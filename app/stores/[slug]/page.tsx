@@ -49,6 +49,13 @@ export default async function StoreDetailPage({ params }: PageProps) {
         <StoreHeader store={store} activeOfferCount={ranked.length} />
       </div>
 
+      <p className="mt-3 text-xs text-slate-500">
+        Ranked by best estimated savings.{' '}
+        <Link href="/how-we-rank" className="text-accent underline-offset-4 hover:underline">
+          How we rank
+        </Link>
+      </p>
+
       {ranked.length === 0 ? (
         <p className="mt-8 rounded-md border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
           No active offers for {store.name} right now. Check back soon.

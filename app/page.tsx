@@ -56,9 +56,12 @@ export default function HomePage() {
       </section>
 
       <footer className="mt-16 border-t border-slate-200 pt-6 text-xs text-slate-500">
-        <p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
           <Link href="/dashboard" className="text-accent underline-offset-4 hover:underline">
             View your saved offers
+          </Link>
+          <Link href="/how-we-rank" className="text-accent underline-offset-4 hover:underline">
+            How we rank
           </Link>
         </p>
         <p className="mt-2">
