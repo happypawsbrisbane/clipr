@@ -24,6 +24,7 @@ export const storeSchema = z.object({
   category: storeCategorySchema,
   country: countrySchema,
   logoUrl: z.string().url(),
+  coverImageUrl: z.string().url(),
   websiteUrl: z.string().url(),
   createdAt: z.string().datetime(),
 });

@@ -18,6 +18,7 @@ export interface Store {
   category: StoreCategory;
   country: Country;
   logoUrl: string;
+  coverImageUrl: string;
   websiteUrl: string;
   createdAt: string;
 }
