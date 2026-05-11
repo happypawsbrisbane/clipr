@@ -14,7 +14,6 @@ const NOW = new Date('2026-05-11T00:00:00.000Z');
 
 function offer(overrides: Partial<Offer> & { id: string }): Offer {
   return {
-    id: overrides.id,
     storeId: 'store_1',
     type: 'CODE',
     title: 'Test offer',
