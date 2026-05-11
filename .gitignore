@@ -25,6 +25,10 @@ pnpm-debug.log*
 .env*.local
 .env
 
+# prisma local sqlite
+prisma/dev.db
+prisma/dev.db-journal
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

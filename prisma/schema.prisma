@@ -1,0 +1,29 @@
+// Coupon Scout AU — persistence layer.
+// SQLite for local dev (no infra). For production, switch the
+// datasource provider to "postgresql" and set DATABASE_URL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Default: SQLite file at prisma/dev.db
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Verification reports — the user-facing trust signal. Persisted so
+// votes survive serverless cold starts and process restarts.
+model VerificationReport {
+  id        String   @id @default(cuid())
+  offerId   String
+  vote      String   // 'WORKED' | 'DIDNT_WORK'
+  comment   String?
+  anonId    String
+  createdAt DateTime @default(now())
+
+  @@index([offerId])
+  @@index([anonId])
+  // One vote per (offer, anonId) — DB-enforced.
+  @@unique([offerId, anonId])
+}

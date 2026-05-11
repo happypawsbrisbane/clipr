@@ -40,16 +40,16 @@ export async function POST(request: Request) {
     mintedAnon = true;
   }
 
-  if (hasVoted(offerId, anonId)) {
+  if (await hasVoted(offerId, anonId)) {
     return NextResponse.json(
-      { error: 'already voted on this offer', tally: tallyFor(offerId) },
+      { error: 'already voted on this offer', tally: await tallyFor(offerId) },
       { status: 409 },
     );
   }
 
-  addReport({ offerId, vote, comment, anonId });
+  await addReport({ offerId, vote, comment, anonId });
 
-  const response = NextResponse.json({ ok: true, tally: tallyFor(offerId) });
+  const response = NextResponse.json({ ok: true, tally: await tallyFor(offerId) });
   if (mintedAnon) {
     response.cookies.set(ANON_COOKIE, anonId, {
       httpOnly: true,

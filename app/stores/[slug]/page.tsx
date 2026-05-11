@@ -6,8 +6,8 @@ import { findStoreBySlug, offersForStore } from '@/lib/data';
 import { rankOffers } from '@/lib/ranking';
 import { getAllReports, tallyFor } from '@/lib/reports-store';
 
-// Reports are stored in memory and can change between requests, so this page
-// must always render fresh.
+// Reports are persisted (DB when DATABASE_URL is set, in-memory otherwise) and
+// change between requests, so this page must always render fresh.
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
@@ -29,7 +29,12 @@ export default async function StoreDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const ranked = rankOffers(offersForStore(store.id), { reports: getAllReports() });
+  const allReports = await getAllReports();
+  const ranked = rankOffers(offersForStore(store.id), { reports: allReports });
+  const tallies = await Promise.all(
+    ranked.map((r) => tallyFor(r.offer.id).then((t) => [r.offer.id, t] as const)),
+  );
+  const tallyMap = new Map(tallies);
 
   return (
     <main className="mx-auto max-w-3xl px-4 pb-16 pt-10">
@@ -63,7 +68,7 @@ export default async function StoreDetailPage({ params }: PageProps) {
       ) : (
         <ol className="mt-8 space-y-4">
           {ranked.map((r, i) => {
-            const t = tallyFor(r.offer.id);
+            const t = tallyMap.get(r.offer.id) ?? { worked: 0, didntWork: 0 };
             return (
               <li key={r.offer.id}>
                 <OfferCard

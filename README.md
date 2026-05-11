@@ -30,6 +30,9 @@ Open http://localhost:3000.
 | `pnpm test:watch` | Run Vitest in watch mode |
 | `pnpm typecheck` | TypeScript only |
 | `pnpm lint` | ESLint |
+| `pnpm db:generate` | Regenerate Prisma client |
+| `pnpm db:migrate` | Apply new migrations (dev) |
+| `pnpm db:seed` | Load data/reports.seed.json into the DB |
 
 ## Project layout
 
@@ -66,14 +69,36 @@ On Vercel, set this in *Project Settings → Environment Variables*; don't commi
 
 `.github/workflows/ci.yml` runs typecheck + tests + build on every push to `main` and on every PR.
 
-## Caveat: in-memory state on serverless
+## Persistence
 
-Three things in this MVP live in process memory, not a database:
+**Verification reports** persist to a database when `DATABASE_URL` is set. The repo ships with a Prisma schema (SQLite for local dev, Postgres-compatible for prod). One vote per `(offerId, anonId)` is enforced by a unique index.
 
-- Verification reports (`/api/reports`)
+Local setup (one-time, SQLite):
+
+```bash
+cp .env.example .env.local
+# set DATABASE_URL="file:./dev.db" inside .env.local
+pnpm db:migrate      # creates prisma/dev.db with the schema
+pnpm db:seed         # loads data/reports.seed.json (15 sample reports)
+pnpm dev
+```
+
+Production (Postgres):
+
+1. Provision Postgres (Vercel Postgres, Neon, Supabase, Railway, …).
+2. Switch the datasource provider in `prisma/schema.prisma` from `sqlite` to `postgresql`.
+3. Set `DATABASE_URL` in your host's environment.
+4. The `postinstall` script runs `prisma generate` automatically. Run `prisma migrate deploy` as part of your release step.
+
+When `DATABASE_URL` is unset the app falls back to an in-memory store seeded from `data/reports.seed.json` — fine for unit tests and local prototyping, but votes evaporate on restart.
+
+## Still in-memory (TODO: persist)
+
+Two pieces still live in process memory and reset on restart / cold start:
+
 - Admin offer-status overrides (`/admin`)
-- Saved offers (per-browser `localStorage`, *not* server state — this one is fine)
+- Outbound click counts (`/api/click/[offerId]`)
 
-On Vercel and other serverless hosts, each cold-started function instance starts with a fresh in-memory store. Votes and admin overrides will not be consistent across requests. This is acceptable for a mock-data MVP demo but **don't take real votes in production until the database swap lands** (each in-memory module is marked `TODO(future):`).
+Both are admin/analytics signals rather than user-facing trust signals, so they're lower priority than reports. Each is marked `TODO(future):` in code.
 
-A single-process host like Render or Railway with no autoscaling will behave more predictably, but is still not durable across restarts.
+Saved offers (`/dashboard`) live in per-browser `localStorage` and are unaffected by server restarts.
