@@ -1,5 +1,6 @@
 import type { Offer } from '@/lib/types';
 import { RankBadge } from '@/components/RankBadge';
+import { SaveButton } from '@/components/SaveButton';
 import { VerificationButtons } from '@/components/VerificationButtons';
 
 interface OfferCardProps {
@@ -80,11 +81,16 @@ export function OfferCard({ offer, rank, rankReason, reportTally }: OfferCardPro
         {lastVerified && <span>Last verified {lastVerified}</span>}
       </footer>
 
-      <VerificationButtons
-        offerId={offer.id}
-        initialWorked={reportTally.worked}
-        initialDidntWork={reportTally.didntWork}
-      />
+      <div className="mt-4 border-t border-slate-200 pt-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <VerificationButtons
+            offerId={offer.id}
+            initialWorked={reportTally.worked}
+            initialDidntWork={reportTally.didntWork}
+          />
+          <SaveButton offerId={offer.id} />
+        </div>
+      </div>
     </article>
   );
 }

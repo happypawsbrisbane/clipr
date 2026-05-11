@@ -68,7 +68,7 @@ export function VerificationButtons({
     isPending;
 
   return (
-    <div className="mt-4 border-t border-slate-200 pt-3">
+    <div>
       <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
         Did this work for you?
       </p>

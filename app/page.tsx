@@ -54,8 +54,15 @@ export default function HomePage() {
       </section>
 
       <footer className="mt-16 border-t border-slate-200 pt-6 text-xs text-slate-500">
-        Mock data only. No live integrations. Savings shown are estimates and subject to retailer
-        terms.
+        <p>
+          <Link href="/dashboard" className="text-accent underline-offset-4 hover:underline">
+            View your saved offers
+          </Link>
+        </p>
+        <p className="mt-2">
+          Mock data only. No live integrations. Savings shown are estimates and subject to retailer
+          terms.
+        </p>
       </footer>
     </main>
   );
