@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Store } from '@/lib/types';
 
 interface StoreHeaderProps {
@@ -9,11 +10,13 @@ export function StoreHeader({ store, activeOfferCount }: StoreHeaderProps) {
   return (
     <header className="overflow-hidden rounded-lg border border-slate-200 bg-white">
       <div className="relative aspect-[3/1] w-full overflow-hidden bg-slate-100 sm:aspect-[4/1]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={store.coverImageUrl}
           alt=""
-          className="h-full w-full object-cover"
+          fill
+          priority
+          sizes="(min-width: 768px) 768px, 100vw"
+          className="object-cover"
         />
       </div>
       <div className="p-5 sm:p-6">
