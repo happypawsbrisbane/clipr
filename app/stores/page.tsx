@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { StoreCard } from '@/components/StoreCard';
-import { loadOffers, loadStores } from '@/lib/data';
+import { getOffers, loadStores } from '@/lib/data';
 
 export const metadata = { title: 'All stores · Coupon Scout AU' };
+export const dynamic = 'force-dynamic';
 
 export default function StoresIndexPage() {
   const stores = loadStores().slice().sort((a, b) => a.name.localeCompare(b.name));
-  const offers = loadOffers();
+  const offers = getOffers();
   const activeByStore = new Map<string, number>();
   for (const o of offers) {
     if (o.status === 'ACTIVE') {

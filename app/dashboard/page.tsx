@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { SavedOffersList } from '@/components/SavedOffersList';
-import { loadOffers, loadStores } from '@/lib/data';
+import { getOffers, loadStores } from '@/lib/data';
 
 export const metadata = { title: 'Saved offers · Coupon Scout AU' };
+export const dynamic = 'force-dynamic';
 
 export default function DashboardPage() {
-  const offers = loadOffers();
+  const offers = getOffers();
   const stores = loadStores();
 
   return (

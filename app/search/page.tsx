@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SearchBar } from '@/components/SearchBar';
 import { StoreCard } from '@/components/StoreCard';
-import { loadOffers, loadStores } from '@/lib/data';
+import { getOffers, loadStores } from '@/lib/data';
 import { searchStores } from '@/lib/search';
 
 interface PageProps {
@@ -9,6 +9,7 @@ interface PageProps {
 }
 
 export const metadata = { title: 'Search · Coupon Scout AU' };
+export const dynamic = 'force-dynamic';
 
 export default async function SearchPage({ searchParams }: PageProps) {
   const { q = '' } = await searchParams;
@@ -17,7 +18,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
   const matches = searchStores(trimmed, stores);
 
   const activeByStore = new Map<string, number>();
-  for (const o of loadOffers()) {
+  for (const o of getOffers()) {
     if (o.status === 'ACTIVE') {
       activeByStore.set(o.storeId, (activeByStore.get(o.storeId) ?? 0) + 1);
     }
