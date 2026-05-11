@@ -1,0 +1,110 @@
+[
+  {
+    "id": "rpt_001",
+    "offerId": "ofr_001",
+    "vote": "WORKED",
+    "comment": "Worked at checkout on a $180 order.",
+    "anonId": "anon_seed_a",
+    "createdAt": "2026-05-06T10:00:00.000Z"
+  },
+  {
+    "id": "rpt_002",
+    "offerId": "ofr_001",
+    "vote": "WORKED",
+    "anonId": "anon_seed_b",
+    "createdAt": "2026-05-07T09:00:00.000Z"
+  },
+  {
+    "id": "rpt_003",
+    "offerId": "ofr_001",
+    "vote": "WORKED",
+    "anonId": "anon_seed_c",
+    "createdAt": "2026-05-08T13:00:00.000Z"
+  },
+  {
+    "id": "rpt_004",
+    "offerId": "ofr_001",
+    "vote": "DIDNT_WORK",
+    "comment": "Said code was excluded on my sale items.",
+    "anonId": "anon_seed_d",
+    "createdAt": "2026-05-09T11:00:00.000Z"
+  },
+  {
+    "id": "rpt_005",
+    "offerId": "ofr_002",
+    "vote": "WORKED",
+    "anonId": "anon_seed_e",
+    "createdAt": "2026-05-08T08:00:00.000Z"
+  },
+  {
+    "id": "rpt_006",
+    "offerId": "ofr_002",
+    "vote": "WORKED",
+    "anonId": "anon_seed_f",
+    "createdAt": "2026-05-09T14:00:00.000Z"
+  },
+  {
+    "id": "rpt_007",
+    "offerId": "ofr_004",
+    "vote": "WORKED",
+    "anonId": "anon_seed_g",
+    "createdAt": "2026-05-07T16:00:00.000Z"
+  },
+  {
+    "id": "rpt_008",
+    "offerId": "ofr_005",
+    "vote": "DIDNT_WORK",
+    "comment": "No discount applied at checkout.",
+    "anonId": "anon_seed_h",
+    "createdAt": "2026-05-08T19:00:00.000Z"
+  },
+  {
+    "id": "rpt_009",
+    "offerId": "ofr_010",
+    "vote": "WORKED",
+    "anonId": "anon_seed_i",
+    "createdAt": "2026-05-10T07:00:00.000Z"
+  },
+  {
+    "id": "rpt_010",
+    "offerId": "ofr_010",
+    "vote": "WORKED",
+    "anonId": "anon_seed_j",
+    "createdAt": "2026-05-10T08:00:00.000Z"
+  },
+  {
+    "id": "rpt_011",
+    "offerId": "ofr_010",
+    "vote": "WORKED",
+    "anonId": "anon_seed_k",
+    "createdAt": "2026-05-10T09:00:00.000Z"
+  },
+  {
+    "id": "rpt_012",
+    "offerId": "ofr_012",
+    "vote": "WORKED",
+    "anonId": "anon_seed_l",
+    "createdAt": "2026-05-08T12:00:00.000Z"
+  },
+  {
+    "id": "rpt_013",
+    "offerId": "ofr_012",
+    "vote": "WORKED",
+    "anonId": "anon_seed_m",
+    "createdAt": "2026-05-09T13:00:00.000Z"
+  },
+  {
+    "id": "rpt_014",
+    "offerId": "ofr_015",
+    "vote": "WORKED",
+    "anonId": "anon_seed_n",
+    "createdAt": "2026-05-09T11:00:00.000Z"
+  },
+  {
+    "id": "rpt_015",
+    "offerId": "ofr_023",
+    "vote": "WORKED",
+    "anonId": "anon_seed_o",
+    "createdAt": "2026-05-09T16:00:00.000Z"
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "str_01_iconic",
+    "slug": "the-iconic",
+    "name": "THE ICONIC",
+    "category": "fashion",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=THE+ICONIC",
+    "websiteUrl": "https://www.theiconic.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_02_jbhifi",
+    "slug": "jb-hi-fi",
+    "name": "JB Hi-Fi",
+    "category": "tech",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=JB+Hi-Fi",
+    "websiteUrl": "https://www.jbhifi.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_03_catch",
+    "slug": "catch",
+    "name": "Catch",
+    "category": "other",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Catch",
+    "websiteUrl": "https://www.catch.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_04_kogan",
+    "slug": "kogan",
+    "name": "Kogan",
+    "category": "tech",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Kogan",
+    "websiteUrl": "https://www.kogan.com",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_05_cottonon",
+    "slug": "cotton-on",
+    "name": "Cotton On",
+    "category": "fashion",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Cotton+On",
+    "websiteUrl": "https://cottonon.com",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_06_adorebeauty",
+    "slug": "adore-beauty",
+    "name": "Adore Beauty",
+    "category": "beauty",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Adore+Beauty",
+    "websiteUrl": "https://www.adorebeauty.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_07_chemistwarehouse",
+    "slug": "chemist-warehouse",
+    "name": "Chemist Warehouse",
+    "category": "beauty",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Chemist+Warehouse",
+    "websiteUrl": "https://www.chemistwarehouse.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_08_bunnings",
+    "slug": "bunnings",
+    "name": "Bunnings",
+    "category": "home",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Bunnings",
+    "websiteUrl": "https://www.bunnings.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_09_menulog",
+    "slug": "menulog",
+    "name": "Menulog",
+    "category": "food",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Menulog",
+    "websiteUrl": "https://www.menulog.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_10_rebelsport",
+    "slug": "rebel-sport",
+    "name": "rebel",
+    "category": "sport",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=rebel",
+    "websiteUrl": "https://www.rebelsport.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_11_bigw",
+    "slug": "big-w",
+    "name": "BIG W",
+    "category": "other",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=BIG+W",
+    "websiteUrl": "https://www.bigw.com.au",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "str_12_bookingau",
+    "slug": "booking-au",
+    "name": "Booking.com (AU)",
+    "category": "travel",
+    "country": "AU",
+    "logoUrl": "https://placehold.co/200x80?text=Booking.com",
+    "websiteUrl": "https://www.booking.com",
+    "createdAt": "2026-01-10T00:00:00.000Z"
+  }
+]
