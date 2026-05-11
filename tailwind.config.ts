@@ -5,12 +5,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#0f172a',
-        paper: '#fafafa',
-        accent: '#0ea5e9',
+        paper: '#FAF7F2',
+        ink: '#1A1815',
+        mute: '#6B665E',
+        hairline: '#E5DDD0',
+        accent: '#B5803B',
+        'accent-soft': '#F4EDDF',
       },
       fontFamily: {
-        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: [
+          'var(--font-sans)',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif',
+        ],
+        serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
+      },
+      letterSpacing: {
+        meta: '0.12em',
       },
     },
   },

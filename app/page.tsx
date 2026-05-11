@@ -21,30 +21,35 @@ export default function HomePage() {
     .slice(0, 6);
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pb-16 pt-12">
+    <main className="mx-auto max-w-[720px] px-5 pb-20 pt-16 sm:pt-20">
       <header>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Coupon Scout AU</h1>
-        <p className="mt-3 text-base text-slate-600">
-          Find the best currently available Australian coupons and sale offers, with a transparent
-          reason why each one ranks first.
+        <p className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
+          Australian coupons, ranked honestly
+        </p>
+        <h1 className="mt-3 font-serif text-4xl leading-tight text-ink sm:text-5xl">
+          Coupon Scout AU
+        </h1>
+        <p className="mt-4 max-w-prose text-base leading-relaxed text-mute">
+          The best currently available coupons and sale offers, each with a plain-English reason
+          why it ranks first. No fake countdowns. No paid placement.
         </p>
       </header>
 
-      <section className="mt-8">
+      <section className="mt-10">
         <SearchBar />
       </section>
 
-      <section className="mt-12">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-lg font-semibold">Featured stores</h2>
+      <section className="mt-16">
+        <div className="flex items-baseline justify-between border-b border-hairline pb-3">
+          <h2 className="font-serif text-xl text-ink">Featured stores</h2>
           <Link
             href="/stores"
-            className="text-sm text-accent underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-accent/40"
+            className="font-sans text-[11px] font-medium uppercase tracking-meta text-accent underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
-            See all stores
+            See all
           </Link>
         </div>
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {featured.map((store) => (
             <StoreCard
               key={store.id}
@@ -55,16 +60,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="mt-16 border-t border-slate-200 pt-6 text-xs text-slate-500">
-        <p className="flex flex-wrap gap-x-4 gap-y-1">
+      <footer className="mt-20 border-t border-hairline pt-6 text-xs leading-relaxed text-mute">
+        <p className="flex flex-wrap gap-x-5 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-meta">
           <Link href="/dashboard" className="text-accent underline-offset-4 hover:underline">
-            View your saved offers
+            Saved offers
           </Link>
           <Link href="/how-we-rank" className="text-accent underline-offset-4 hover:underline">
             How we rank
           </Link>
         </p>
-        <p className="mt-2">
+        <p className="mt-3">
           Mock data only. No live integrations. Savings shown are estimates and subject to retailer
           terms.
         </p>

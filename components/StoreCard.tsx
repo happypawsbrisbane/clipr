@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Store } from '@/lib/types';
 
@@ -11,30 +10,17 @@ export function StoreCard({ store, activeOfferCount }: StoreCardProps) {
   return (
     <Link
       href={`/stores/${store.slug}`}
-      className="group block overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-accent hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
+      className="group block border border-hairline bg-paper p-5 transition hover:border-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
     >
-      <div className="relative aspect-[2/1] w-full overflow-hidden bg-slate-100">
-        <Image
-          src={store.coverImageUrl}
-          alt=""
-          fill
-          sizes="(min-width: 640px) 50vw, 100vw"
-          className="object-cover transition group-hover:scale-[1.02]"
-        />
-      </div>
-      <div className="flex items-center justify-between gap-3 p-4">
-        <div className="min-w-0">
-          <h3 className="text-base font-semibold">{store.name}</h3>
-          <p className="mt-0.5 text-xs uppercase tracking-wide text-slate-500">
-            {store.category}
-          </p>
-        </div>
-        {typeof activeOfferCount === 'number' && (
-          <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700">
-            {activeOfferCount} {activeOfferCount === 1 ? 'offer' : 'offers'}
-          </span>
-        )}
-      </div>
+      <p className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
+        {store.category}
+      </p>
+      <h3 className="mt-2 font-serif text-xl text-ink group-hover:text-accent">{store.name}</h3>
+      {typeof activeOfferCount === 'number' && (
+        <p className="mt-3 font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
+          {activeOfferCount} {activeOfferCount === 1 ? 'active offer' : 'active offers'}
+        </p>
+      )}
     </Link>
   );
 }

@@ -69,7 +69,7 @@ export function VerificationButtons({
 
   return (
     <div>
-      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+      <p className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
         Did this work for you?
       </p>
       <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -77,7 +77,7 @@ export function VerificationButtons({
           type="button"
           onClick={() => submitVote('WORKED')}
           disabled={disabled}
-          className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium hover:border-accent disabled:cursor-not-allowed disabled:opacity-50"
+          className="border border-hairline bg-paper px-3 py-1.5 font-sans text-sm font-medium text-ink hover:border-accent disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Report that this offer worked"
         >
           Worked ({worked})
@@ -86,19 +86,19 @@ export function VerificationButtons({
           type="button"
           onClick={() => submitVote('DIDNT_WORK')}
           disabled={disabled}
-          className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium hover:border-accent disabled:cursor-not-allowed disabled:opacity-50"
+          className="border border-hairline bg-paper px-3 py-1.5 font-sans text-sm font-medium text-ink hover:border-accent disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Report that this offer did not work"
         >
           Didn&apos;t work ({didntWork})
         </button>
         {status.kind === 'voted' && (
-          <span className="text-xs text-slate-500">Thanks — your vote was recorded.</span>
+          <span className="text-xs text-mute">Thanks — your vote was recorded.</span>
         )}
         {status.kind === 'already-voted' && (
-          <span className="text-xs text-slate-500">You&apos;ve already voted on this offer.</span>
+          <span className="text-xs text-mute">You&apos;ve already voted on this offer.</span>
         )}
         {status.kind === 'error' && (
-          <span className="text-xs text-rose-600">{status.message}</span>
+          <span className="text-xs text-rose-700">{status.message}</span>
         )}
       </div>
     </div>

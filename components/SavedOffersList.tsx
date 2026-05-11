@@ -34,7 +34,7 @@ export function SavedOffersList({ offers, stores }: SavedOffersListProps) {
 
   if (items === null) {
     return (
-      <p className="rounded-md border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
+      <p className="border border-dashed border-hairline bg-paper p-6 text-sm text-mute">
         Loading your saved offers…
       </p>
     );
@@ -42,35 +42,37 @@ export function SavedOffersList({ offers, stores }: SavedOffersListProps) {
 
   if (items.length === 0) {
     return (
-      <p className="rounded-md border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
+      <p className="border border-dashed border-hairline bg-paper p-6 text-sm text-mute">
         You haven&apos;t saved any offers yet. Browse a store and tap{' '}
-        <span className="font-semibold">Save</span> on the offers you want to come back to.
+        <span className="font-medium text-ink">Save</span> on the offers you want to come back to.
       </p>
     );
   }
 
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-4">
       {items.map(({ saved, offer, store }) => {
         const expiry = formatExpiry(offer.expiresAt);
         return (
-          <li
-            key={saved.offerId}
-            className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
-          >
+          <li key={saved.offerId} className="border border-hairline bg-paper p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
-                <p className="text-xs uppercase tracking-wide text-slate-500">{store.name}</p>
-                <h3 className="mt-1 text-base font-semibold leading-tight">
-                  <Link href={`/stores/${store.slug}`} className="hover:underline">
+                <p className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
+                  {store.name}
+                </p>
+                <h3 className="mt-1.5 font-serif text-lg leading-snug text-ink">
+                  <Link href={`/stores/${store.slug}`} className="hover:text-accent">
                     {offer.title}
                   </Link>
                 </h3>
-                <p className="mt-1 text-sm text-slate-600">{offer.description}</p>
-                <p className="mt-2 text-xs text-slate-500">
+                <p className="mt-1 text-sm leading-relaxed text-mute">{offer.description}</p>
+                <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
                   {offer.type === 'CODE' && offer.code && (
-                    <span className="mr-3">
-                      Code: <code className="rounded bg-slate-100 px-1 font-mono">{offer.code}</code>
+                    <span>
+                      Code{' '}
+                      <code className="ml-1 bg-accent-soft px-1.5 py-0.5 font-mono text-[11px] tracking-wider text-ink">
+                        {offer.code}
+                      </code>
                     </span>
                   )}
                   {expiry && <span>Expires {expiry}</span>}
@@ -84,7 +86,7 @@ export function SavedOffersList({ offers, stores }: SavedOffersListProps) {
                     prev ? prev.filter((i) => i.saved.offerId !== saved.offerId) : prev,
                   );
                 }}
-                className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium hover:border-accent"
+                className="border border-hairline bg-paper px-3 py-1.5 font-sans text-sm font-medium text-ink hover:border-accent"
                 aria-label={`Remove ${offer.title} from saved offers`}
               >
                 Remove

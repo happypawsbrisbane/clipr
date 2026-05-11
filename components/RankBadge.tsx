@@ -1,15 +1,26 @@
-interface RankBadgeProps {
+interface RankReasonProps {
   rank: number;
   reason: string;
+  highlighted?: boolean;
 }
 
-export function RankBadge({ rank, reason }: RankBadgeProps) {
+export function RankReason({ rank, reason, highlighted = false }: RankReasonProps) {
   return (
-    <div className="flex items-start gap-2">
-      <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-ink px-2 text-xs font-semibold text-white">
+    <div
+      className={
+        'mt-4 flex items-start gap-3 border-l-2 pl-3 ' +
+        (highlighted ? 'border-accent' : 'border-hairline')
+      }
+    >
+      <span
+        className={
+          'mt-0.5 font-serif text-sm leading-none ' +
+          (highlighted ? 'text-accent' : 'text-mute')
+        }
+      >
         #{rank}
       </span>
-      <p className="text-xs leading-relaxed text-slate-600">{reason}</p>
+      <p className="text-sm leading-relaxed text-ink">{reason}</p>
     </div>
   );
 }

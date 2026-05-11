@@ -16,11 +16,11 @@ export function SearchBar({ defaultValue = '' }: SearchBarProps) {
           defaultValue={defaultValue}
           placeholder="Search a store, e.g. JB Hi-Fi"
           autoComplete="off"
-          className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          className="w-full border border-hairline bg-paper px-3.5 py-2.5 font-sans text-base text-ink placeholder:text-mute focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
         />
         <button
           type="submit"
-          className="rounded-md bg-ink px-4 py-2 text-sm font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent/40"
+          className="bg-ink px-5 py-2.5 font-sans text-sm font-medium text-paper transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent/40"
         >
           Search
         </button>

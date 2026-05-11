@@ -25,35 +25,35 @@ export default async function SearchPage({ searchParams }: PageProps) {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pb-16 pt-10">
-      <nav className="text-sm text-slate-500">
-        <Link href="/" className="hover:underline">
+    <main className="mx-auto max-w-[720px] px-5 pb-20 pt-10">
+      <nav className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
+        <Link href="/" className="hover:text-accent">
           Home
         </Link>
-        <span aria-hidden="true"> / </span>
+        <span aria-hidden="true" className="mx-2">/</span>
         <span aria-current="page">Search</span>
       </nav>
 
-      <header className="mt-4">
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Search stores</h1>
-        <p className="mt-2 text-sm text-slate-600">
+      <header className="mt-6">
+        <h1 className="font-serif text-3xl leading-tight text-ink sm:text-4xl">Search stores</h1>
+        <p className="mt-3 text-sm leading-relaxed text-mute">
           Find Australian stores by name or category.
         </p>
       </header>
 
-      <section className="mt-6">
+      <section className="mt-8">
         <SearchBar defaultValue={trimmed} />
       </section>
 
-      <section className="mt-8" aria-live="polite">
+      <section className="mt-10" aria-live="polite">
         {trimmed === '' ? (
-          <p className="rounded-md border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
+          <p className="border border-dashed border-hairline bg-paper p-6 text-sm text-mute">
             Enter a store name or category above to get started.
           </p>
         ) : matches.length === 0 ? (
-          <p className="rounded-md border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
-            No stores match <span className="font-semibold">{trimmed}</span>. Try a different name
-            or {' '}
+          <p className="border border-dashed border-hairline bg-paper p-6 text-sm text-mute">
+            No stores match <span className="font-medium text-ink">{trimmed}</span>. Try a
+            different name or{' '}
             <Link href="/stores" className="text-accent underline-offset-4 hover:underline">
               browse all stores
             </Link>
@@ -61,9 +61,9 @@ export default async function SearchPage({ searchParams }: PageProps) {
           </p>
         ) : (
           <>
-            <p className="text-sm text-slate-600">
+            <p className="font-sans text-[11px] font-medium uppercase tracking-meta text-mute">
               {matches.length} {matches.length === 1 ? 'match' : 'matches'} for{' '}
-              <span className="font-semibold">{trimmed}</span>.
+              <span className="text-ink">{trimmed}</span>
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {matches.map((store) => (

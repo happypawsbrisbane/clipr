@@ -32,7 +32,7 @@ export function SaveButton({ offerId }: SaveButtonProps) {
         type="button"
         disabled
         aria-hidden="true"
-        className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium opacity-50"
+        className="border border-hairline bg-paper px-3 py-1.5 font-sans text-sm font-medium text-ink opacity-50"
       >
         Save
       </button>
@@ -45,10 +45,10 @@ export function SaveButton({ offerId }: SaveButtonProps) {
       onClick={toggle}
       aria-pressed={saved}
       className={
-        'rounded-md border px-3 py-1.5 text-sm font-medium transition ' +
+        'border px-3 py-1.5 font-sans text-sm font-medium transition ' +
         (saved
-          ? 'border-accent bg-accent/10 text-ink'
-          : 'border-slate-300 bg-white text-ink hover:border-accent')
+          ? 'border-accent bg-accent-soft text-ink'
+          : 'border-hairline bg-paper text-ink hover:border-accent')
       }
     >
       {saved ? 'Saved' : 'Save'}
