@@ -1,10 +1,12 @@
 import type { Offer } from '@/lib/types';
 import { RankBadge } from '@/components/RankBadge';
+import { VerificationButtons } from '@/components/VerificationButtons';
 
 interface OfferCardProps {
   offer: Offer;
   rank: number;
   rankReason: string;
+  reportTally: { worked: number; didntWork: number };
 }
 
 function formatExpiry(expiresAt?: string): string | null {
@@ -37,7 +39,7 @@ function offerTypeLabel(offer: Offer): string {
   }
 }
 
-export function OfferCard({ offer, rank, rankReason }: OfferCardProps) {
+export function OfferCard({ offer, rank, rankReason, reportTally }: OfferCardProps) {
   const expiryLabel = formatExpiry(offer.expiresAt);
   const lastVerified = formatLastVerified(offer.lastVerifiedAt);
 
@@ -77,6 +79,12 @@ export function OfferCard({ offer, rank, rankReason }: OfferCardProps) {
         {typeof offer.minSpend === 'number' && <span>Min spend ${offer.minSpend}</span>}
         {lastVerified && <span>Last verified {lastVerified}</span>}
       </footer>
+
+      <VerificationButtons
+        offerId={offer.id}
+        initialWorked={reportTally.worked}
+        initialDidntWork={reportTally.didntWork}
+      />
     </article>
   );
 }

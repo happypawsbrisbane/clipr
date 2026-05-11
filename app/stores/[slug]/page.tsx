@@ -2,8 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { OfferCard } from '@/components/OfferCard';
 import { StoreHeader } from '@/components/StoreHeader';
-import { findStoreBySlug, loadSeedReports, offersForStore } from '@/lib/data';
+import { findStoreBySlug, offersForStore } from '@/lib/data';
 import { rankOffers } from '@/lib/ranking';
+import { getAllReports, tallyFor } from '@/lib/reports-store';
+
+// Reports are stored in memory and can change between requests, so this page
+// must always render fresh.
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,7 +29,7 @@ export default async function StoreDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const ranked = rankOffers(offersForStore(store.id), { reports: loadSeedReports() });
+  const ranked = rankOffers(offersForStore(store.id), { reports: getAllReports() });
 
   return (
     <main className="mx-auto max-w-3xl px-4 pb-16 pt-10">
@@ -50,11 +55,19 @@ export default async function StoreDetailPage({ params }: PageProps) {
         </p>
       ) : (
         <ol className="mt-8 space-y-4">
-          {ranked.map((r, i) => (
-            <li key={r.offer.id}>
-              <OfferCard offer={r.offer} rank={i + 1} rankReason={r.rankReason} />
-            </li>
-          ))}
+          {ranked.map((r, i) => {
+            const t = tallyFor(r.offer.id);
+            return (
+              <li key={r.offer.id}>
+                <OfferCard
+                  offer={r.offer}
+                  rank={i + 1}
+                  rankReason={r.rankReason}
+                  reportTally={{ worked: t.worked, didntWork: t.didntWork }}
+                />
+              </li>
+            );
+          })}
         </ol>
       )}
     </main>
