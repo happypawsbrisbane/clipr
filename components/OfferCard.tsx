@@ -1,10 +1,12 @@
-import type { Offer } from '@/lib/types';
+import type { Offer, Store } from '@/lib/types';
+import { OfferCTA } from '@/components/OfferCTA';
 import { RankBadge } from '@/components/RankBadge';
 import { SaveButton } from '@/components/SaveButton';
 import { VerificationButtons } from '@/components/VerificationButtons';
 
 interface OfferCardProps {
   offer: Offer;
+  store: Store;
   rank: number;
   rankReason: string;
   reportTally: { worked: number; didntWork: number };
@@ -40,7 +42,7 @@ function offerTypeLabel(offer: Offer): string {
   }
 }
 
-export function OfferCard({ offer, rank, rankReason, reportTally }: OfferCardProps) {
+export function OfferCard({ offer, store, rank, rankReason, reportTally }: OfferCardProps) {
   const expiryLabel = formatExpiry(offer.expiresAt);
   const lastVerified = formatLastVerified(offer.lastVerifiedAt);
 
@@ -63,16 +65,19 @@ export function OfferCard({ offer, rank, rankReason, reportTally }: OfferCardPro
           </p>
         </div>
 
-        {offer.type === 'CODE' && offer.code && (
-          <div className="shrink-0">
-            <span className="block text-xs font-medium uppercase tracking-wide text-slate-500">
-              Code
-            </span>
-            <code className="mt-1 inline-block rounded-md border border-dashed border-slate-400 bg-slate-50 px-3 py-2 font-mono text-base font-semibold">
-              {offer.code}
-            </code>
-          </div>
-        )}
+        <div className="shrink-0 sm:max-w-[14rem]">
+          {offer.type === 'CODE' && offer.code && (
+            <>
+              <span className="block text-xs font-medium uppercase tracking-wide text-slate-500">
+                Code
+              </span>
+              <code className="mt-1 inline-block rounded-md border border-dashed border-slate-400 bg-slate-50 px-3 py-2 font-mono text-base font-semibold">
+                {offer.code}
+              </code>
+            </>
+          )}
+          <OfferCTA offer={offer} store={store} />
+        </div>
       </div>
 
       <footer className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">

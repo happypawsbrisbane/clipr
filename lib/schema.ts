@@ -33,6 +33,7 @@ export const offerTypeSchema = z.enum(['CODE', 'DEAL', 'SALE']);
 export const discountTypeSchema = z.enum(['PERCENT', 'FIXED', 'FREE_SHIPPING', 'BOGO', 'OTHER']);
 export const offerStatusSchema = z.enum(['ACTIVE', 'PENDING', 'EXPIRED', 'REMOVED']);
 export const offerSourceSchema = z.enum(['MOCK', 'MANUAL']);
+export const affiliateNetworkSchema = z.enum(['AWIN', 'CJ', 'RAKUTEN', 'IMPACT', 'OTHER']);
 
 export const offerSchema = z
   .object({
@@ -53,6 +54,8 @@ export const offerSchema = z
     lastVerifiedAt: z.string().datetime().optional(),
     createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
+    affiliateUrl: z.string().url().optional(),
+    affiliateNetwork: affiliateNetworkSchema.optional(),
   })
   .superRefine((offer, ctx) => {
     if (offer.type === 'CODE' && !offer.code) {

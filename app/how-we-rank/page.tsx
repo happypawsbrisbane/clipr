@@ -52,8 +52,23 @@ export default function HowWeRankPage() {
         <h2 className="mt-8 text-lg font-semibold">What we don&apos;t score on</h2>
         <p className="mt-2 text-slate-700">
           Affiliate revenue, sponsorship, or any commercial relationship with a retailer is{' '}
-          <strong>never</strong> a ranking input. If we ever introduce affiliate links they will
-          remain a disclosure label only, separate from the score.
+          <strong>never</strong> a ranking input. The same ranking function runs whether an
+          offer has an affiliate link or not, and a regression test in our codebase asserts that
+          adding an affiliate URL to an offer leaves its score and position unchanged.
+        </p>
+
+        <h2 className="mt-8 text-lg font-semibold">Affiliate links</h2>
+        <p className="mt-2 text-slate-700">
+          Some &ldquo;Shop at &hellip;&rdquo; buttons send you to the retailer through an
+          affiliate network (AWIN, CJ, Rakuten, Impact). When that&apos;s the case the button
+          carries a visible <em>Affiliate link</em> label and we may earn a small commission
+          if you buy something. We use the same anonymous browser cookie (<code>csa_aid</code>)
+          to track outbound clicks for attribution.
+        </p>
+        <p className="mt-2 text-slate-700">
+          You are never required to click an affiliate link. Every offer also shows the
+          retailer&apos;s name, the offer code (where applicable), and the offer terms, so you
+          can navigate to the retailer directly if you prefer.
         </p>
 
         <h2 className="mt-8 text-lg font-semibold">Estimates, not guarantees</h2>

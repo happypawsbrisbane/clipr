@@ -33,6 +33,10 @@ export type OfferStatus = 'ACTIVE' | 'PENDING' | 'EXPIRED' | 'REMOVED';
 // SCRAPED and AFFILIATE are reserved for future phases.
 export type OfferSource = 'MOCK' | 'MANUAL';
 
+// Affiliate networks commonly used by AU retailers. Disclosure-only —
+// presence of these fields must NEVER influence rankOffers().
+export type AffiliateNetwork = 'AWIN' | 'CJ' | 'RAKUTEN' | 'IMPACT' | 'OTHER';
+
 export interface Offer {
   id: string;
   storeId: string;
@@ -51,6 +55,8 @@ export interface Offer {
   lastVerifiedAt?: string;
   createdAt: string;
   updatedAt: string;
+  affiliateUrl?: string;
+  affiliateNetwork?: AffiliateNetwork;
 }
 
 export type Vote = 'WORKED' | 'DIDNT_WORK';

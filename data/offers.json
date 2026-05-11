@@ -16,7 +16,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-08T02:00:00.000Z",
     "createdAt": "2026-04-15T00:00:00.000Z",
-    "updatedAt": "2026-05-08T02:00:00.000Z"
+    "updatedAt": "2026-05-08T02:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/awin/ofr_001?to=https%3A%2F%2Fwww.theiconic.com.au",
+    "affiliateNetwork": "AWIN"
   },
   {
     "id": "ofr_002",
@@ -68,7 +70,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-07T00:00:00.000Z",
     "createdAt": "2026-03-01T00:00:00.000Z",
-    "updatedAt": "2026-05-07T00:00:00.000Z"
+    "updatedAt": "2026-05-07T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/cj/ofr_004?to=https%3A%2F%2Fwww.jbhifi.com.au",
+    "affiliateNetwork": "CJ"
   },
   {
     "id": "ofr_005",
@@ -83,7 +87,9 @@
     "status": "ACTIVE",
     "source": "MOCK",
     "createdAt": "2026-04-20T00:00:00.000Z",
-    "updatedAt": "2026-04-20T00:00:00.000Z"
+    "updatedAt": "2026-04-20T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/cj/ofr_005?to=https%3A%2F%2Fwww.jbhifi.com.au",
+    "affiliateNetwork": "CJ"
   },
   {
     "id": "ofr_006",
@@ -116,7 +122,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-04-29T00:00:00.000Z",
     "createdAt": "2026-01-01T00:00:00.000Z",
-    "updatedAt": "2026-04-29T00:00:00.000Z"
+    "updatedAt": "2026-04-29T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/awin/ofr_007?to=https%3A%2F%2Fwww.catch.com.au",
+    "affiliateNetwork": "AWIN"
   },
   {
     "id": "ofr_008",
@@ -165,7 +173,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-10T00:00:00.000Z",
     "createdAt": "2026-05-09T00:00:00.000Z",
-    "updatedAt": "2026-05-10T00:00:00.000Z"
+    "updatedAt": "2026-05-10T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/rakuten/ofr_010?to=https%3A%2F%2Fwww.kogan.com",
+    "affiliateNetwork": "RAKUTEN"
   },
   {
     "id": "ofr_011",
@@ -198,7 +208,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-09T00:00:00.000Z",
     "createdAt": "2026-05-07T00:00:00.000Z",
-    "updatedAt": "2026-05-09T00:00:00.000Z"
+    "updatedAt": "2026-05-09T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/awin/ofr_012?to=https%3A%2F%2Fcottonon.com",
+    "affiliateNetwork": "AWIN"
   },
   {
     "id": "ofr_013",
@@ -278,7 +290,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-06T00:00:00.000Z",
     "createdAt": "2026-01-01T00:00:00.000Z",
-    "updatedAt": "2026-05-06T00:00:00.000Z"
+    "updatedAt": "2026-05-06T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/cj/ofr_017?to=https%3A%2F%2Fwww.chemistwarehouse.com.au",
+    "affiliateNetwork": "CJ"
   },
   {
     "id": "ofr_018",
@@ -343,7 +357,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-08T00:00:00.000Z",
     "createdAt": "2026-01-01T00:00:00.000Z",
-    "updatedAt": "2026-05-08T00:00:00.000Z"
+    "updatedAt": "2026-05-08T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/impact/ofr_021?to=https%3A%2F%2Fwww.menulog.com.au",
+    "affiliateNetwork": "IMPACT"
   },
   {
     "id": "ofr_022",
@@ -377,7 +393,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-09T00:00:00.000Z",
     "createdAt": "2026-05-05T00:00:00.000Z",
-    "updatedAt": "2026-05-09T00:00:00.000Z"
+    "updatedAt": "2026-05-09T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/awin/ofr_023?to=https%3A%2F%2Fwww.rebelsport.com.au",
+    "affiliateNetwork": "AWIN"
   },
   {
     "id": "ofr_024",
@@ -442,7 +460,9 @@
     "source": "MANUAL",
     "lastVerifiedAt": "2026-05-05T00:00:00.000Z",
     "createdAt": "2026-04-01T00:00:00.000Z",
-    "updatedAt": "2026-05-05T00:00:00.000Z"
+    "updatedAt": "2026-05-05T00:00:00.000Z",
+    "affiliateUrl": "https://aff.example.test/impact/ofr_027?to=https%3A%2F%2Fwww.booking.com",
+    "affiliateNetwork": "IMPACT"
   },
   {
     "id": "ofr_028",

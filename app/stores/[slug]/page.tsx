@@ -68,6 +68,7 @@ export default async function StoreDetailPage({ params }: PageProps) {
               <li key={r.offer.id}>
                 <OfferCard
                   offer={r.offer}
+                  store={store}
                   rank={i + 1}
                   rankReason={r.rankReason}
                   reportTally={{ worked: t.worked, didntWork: t.didntWork }}

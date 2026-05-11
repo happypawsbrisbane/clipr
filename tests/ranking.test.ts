@@ -266,4 +266,28 @@ describe('rankOffers', () => {
     const second = rankOffers(offers, { now: NOW }).map((r) => r.offer.id);
     expect(first).toEqual(second);
   });
+
+  // Non-negotiable contract from CLAUDE.md: affiliate links are
+  // disclosure-only and must NEVER influence the ranking score.
+  it('produces identical scores and ordering whether affiliate fields are set', () => {
+    const plain = [
+      offer({ id: 'a', discountValue: 25 }),
+      offer({ id: 'b', discountValue: 20 }),
+      offer({ id: 'c', discountValue: 15 }),
+    ];
+    const withAffiliate = plain.map((o) => ({
+      ...o,
+      affiliateUrl: 'https://aff.example.test/awin/' + o.id,
+      affiliateNetwork: 'AWIN' as const,
+    }));
+
+    const a = rankOffers(plain, { now: NOW });
+    const b = rankOffers(withAffiliate, { now: NOW });
+
+    expect(b.map((r) => r.offer.id)).toEqual(a.map((r) => r.offer.id));
+    for (let i = 0; i < a.length; i++) {
+      expect(b[i].score).toBe(a[i].score);
+      expect(b[i].rankReason).toBe(a[i].rankReason);
+    }
+  });
 });
