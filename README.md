@@ -12,6 +12,9 @@ but not yet built. See [Roadmap](#roadmap).
 - A **Vite + React 18 + TypeScript + Tailwind** frontend.
 - A fully built, responsive, dark-mode **Business Dashboard**: revenue, upcoming
   bookings, outstanding invoices, capacity utilisation, and a live activity feed.
+- **Client & Pet management**: searchable client list, add clients, client detail
+  with pet add/remove and care flags — working CRUD persisted to `localStorage`
+  (validated with the AU phone helper), ready to swap for the API.
 - A **Prisma schema** (`prisma/schema.prisma`) modelling the Phase 1 entities.
 - Pure, testable business logic in `src/lib/` (metrics, AU formatting, ABN/phone
   validation).
@@ -45,9 +48,9 @@ Open http://localhost:5173.
 
 ## Project layout
 
-- `src/pages/` — top-level pages (Dashboard)
-- `src/components/` — layout + dashboard UI components
-- `src/lib/` — pure logic: `metrics`, `format` (AUD/GST/dates), `validation` (ABN, AU phone), theming
+- `src/pages/` — top-level pages (Dashboard, Clients, ClientDetail)
+- `src/components/` — layout, dashboard, client, and shared UI components
+- `src/lib/` — pure logic: `metrics`, `format` (AUD/GST/dates), `validation` (ABN, AU phone), `store` (CRUD), `useHashRoute`, theming
 - `src/data/` — mock data (database-ready shapes)
 - `src/types.ts` — domain types mirroring the Prisma schema
 - `prisma/schema.prisma` — database schema foundation
@@ -73,8 +76,9 @@ Phase 1 (MVP) per the brief — build order: **database schema → API → front
 
 - [x] Database schema (Prisma)
 - [x] Business Dashboard (frontend, mock data)
+- [x] Client & Pet CRUD (frontend, localStorage-backed)
 - [ ] Auth (sitter login)
-- [ ] Client & Pet CRUD
+- [ ] Express + Prisma API (swap the localStorage store for real persistence)
 - [ ] Booking CRUD with calendar
 - [ ] Client portal (read-only first)
 - [ ] Photo uploads during bookings
