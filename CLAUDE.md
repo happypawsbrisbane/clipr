@@ -1,35 +1,40 @@
-# Project instructions
+# Project instructions — PetSitter Pro
+
+Premium pet-sitting software for boutique Australian operators (concierge-level
+service for anxious, senior, and special-needs pets). High-touch, low-volume.
 
 ## Stack
-- Next.js
-- TypeScript
-- Simple modular components
-- Mock JSON data first
-- Database-ready schema design
+- React 18 + TypeScript + Vite + TailwindCSS (shadcn/ui-ready)
+- Prisma + PostgreSQL (SQLite for local dev)
+- Planned backend: Node + Express + TypeScript, Stripe (AUD)
+- Mock JSON/TS data first; database-ready schema design
 
 ## Coding rules
 - Plan before coding
 - Keep file changes small
 - Prefer readable over clever
-- Add tests for ranking logic
-- Do not invent live coupon results
-- Mark all future integrations clearly
+- Pure business/calculation logic lives in `src/lib/` and stays React-free so it
+  is easy to test and to move server-side
+- Add tests for money/GST, capacity, and validation logic
+- Mark all future integrations clearly with `TODO(future):` — do not stub
+  functionality that isn't shipping in the current phase
 
 ## UX
-- Clean, trustworthy, minimal
-- Mobile-first
-- Australian audience
-- Focus on clarity and verification
+- Clean, premium aesthetic (not clinical or generic)
+- Mobile-first (sitters use phones in the field)
+- Dark mode support (class-based, OS-aware)
+- Accessible — target WCAG 2.1 AA (landmarks, focus rings, aria labels)
+- Australian English throughout
 
-## Ranking integrity (non-negotiable)
-- Ranking inputs must be pure and auditable; every ranked offer surfaces a `rankReason` to the user.
-- Affiliate revenue, sponsorship, and any commercial signal MUST NOT be inputs to the ranking score. When affiliate integrations land later, they remain disclosure-only.
-- Mock data and any future scraped data must carry an explicit `source` field; scraping must be reviewed against each retailer's ToS before enabling.
+## Australian compliance & conventions (non-negotiable)
+- Currency in **AUD**; store money as integer **cents**, format at the edge
+- **GST (10%)** calculated and displayed on invoices
+- **ABN** on business settings/invoices; validate with the ATO checksum
+- Australian phone validation (mobile + landline)
+- Dates **DD/MM/YYYY**; times in **AEST/AEDT** (`Australia/Sydney`)
+- Privacy: collect only what's needed; never commit secrets (use `.env`)
 
-## Australian compliance notes
-- Australian Consumer Law (ACL s18): no false or misleading representations. Use "estimated savings" language, not "guaranteed". Always show terms and a `lastVerifiedAt` timestamp on each offer.
-- Privacy Act 1988 + APPs: v1 collects no PII. Verification reports use a cookie-scoped anonymous id only, documented on the public "How we rank" page.
-- Email features (Spam Act 2003) are out of scope for v1.
-
-## Future integrations
-Mark all future integrations with `TODO(future):` comments. Do not stub functionality that isn't shipping in v1.
+## Build order (Phase 1 MVP)
+Database schema → API → frontend → Stripe → deploy. The dashboard frontend is
+built ahead of the API against `src/data/mock.ts`, whose shapes mirror the Prisma
+models so the swap is mechanical.
