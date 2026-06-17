@@ -1,14 +1,30 @@
-# Coupon Scout AU
+# PetSitter Pro
 
-An Australian web app that helps shoppers find the best currently available coupons and sale offers, with a transparent reason why each offer ranks first.
+Premium pet-sitting software for boutique Australian operators — concierge-level
+service for anxious, senior, and special-needs pets, not volume bookings.
 
-**Status:** MVP scaffolding. Mock data only. No live integrations.
+**Status:** MVP scaffolding. The **Business Dashboard** is implemented as a real,
+runnable React app on mock data; the backend (API, payments, auth) is mapped out
+but not yet built. See [Roadmap](#roadmap).
+
+## What's in this repo today
+
+- A **Vite + React 18 + TypeScript + Tailwind** frontend.
+- A fully built, responsive, dark-mode **Business Dashboard**: revenue, upcoming
+  bookings, outstanding invoices, capacity utilisation, and a live activity feed.
+- A **Prisma schema** (`prisma/schema.prisma`) modelling the Phase 1 entities.
+- Pure, testable business logic in `src/lib/` (metrics, AU formatting, ABN/phone
+  validation).
+
+The dashboard reads from `src/data/mock.ts`. Those shapes mirror `src/types.ts`
+and the Prisma models, so swapping mock data for the real API will be mechanical.
 
 ## Stack
-- Next.js 15 (App Router) + TypeScript
-- Tailwind CSS
-- Zod for runtime validation
-- Vitest for tests
+
+- **Frontend:** React 18 + TypeScript + Vite + TailwindCSS (shadcn/ui-ready)
+- **Database (foundation):** PostgreSQL via Prisma (SQLite for local dev)
+- **Planned backend:** Node + Express + TypeScript, Stripe (AUD), auth
+- **Hosting target:** AWS Sydney or Vercel
 
 ## Getting started
 
@@ -17,88 +33,52 @@ pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000.
-
-## Commands
+Open http://localhost:5173.
 
 | Command | Purpose |
 |---|---|
-| `pnpm dev` | Run the dev server |
-| `pnpm build` | Production build |
-| `pnpm start` | Run the production build |
-| `pnpm test` | Run Vitest once |
-| `pnpm test:watch` | Run Vitest in watch mode |
+| `pnpm dev` | Run the Vite dev server |
+| `pnpm build` | Type-check and produce a production build |
+| `pnpm preview` | Preview the production build |
 | `pnpm typecheck` | TypeScript only |
 | `pnpm lint` | ESLint |
-| `pnpm db:generate` | Regenerate Prisma client |
-| `pnpm db:migrate` | Apply new migrations (dev) |
-| `pnpm db:seed` | Load data/reports.seed.json into the DB |
 
 ## Project layout
 
-- `app/` — Next.js App Router pages and route handlers
-- `components/` — UI components
-- `lib/` — Pure domain logic (types, schemas, ranking, loaders)
-- `data/` — Mock JSON data (stores, offers, seed reports)
-- `tests/` — Vitest unit tests
+- `src/pages/` — top-level pages (Dashboard)
+- `src/components/` — layout + dashboard UI components
+- `src/lib/` — pure logic: `metrics`, `format` (AUD/GST/dates), `validation` (ABN, AU phone), theming
+- `src/data/` — mock data (database-ready shapes)
+- `src/types.ts` — domain types mirroring the Prisma schema
+- `prisma/schema.prisma` — database schema foundation
 
-See `PRD.md` for product scope and `CLAUDE.md` for coding rules and compliance notes.
+## Australian specifics
 
-## Environment variables
+- Currency in **AUD**, money stored as integer cents.
+- **GST (10%)** computed and shown on invoices (`gstComponentCents`).
+- **ABN** validation via the ATO checksum; **AU phone** validation (mobile + landline).
+- Dates shown **DD/MM/YYYY**, times in **AEST/AEDT** (`Australia/Sydney`).
+- Australian English throughout.
 
-Copy `.env.example` to `.env.local` for local development. The only optional variable today is:
+## Accessibility & UX
 
-- `ADMIN_PASSWORD` — enables the `/admin` moderation page. When unset, `/admin` renders a "disabled" notice.
+- Mobile-first layout (sitters work from phones in the field).
+- Class-based **dark mode** with OS-preference detection and persistence.
+- Semantic landmarks, visible focus rings, `aria-*` labels, and a screen-reader
+  table mirroring the revenue chart — targeting WCAG 2.1 AA.
 
-On Vercel, set this in *Project Settings → Environment Variables*; don't commit `.env.local`.
+## Roadmap
 
-## Deploying
+Phase 1 (MVP) per the brief — build order: **database schema → API → frontend → Stripe → deploy**.
 
-### Vercel (recommended)
+- [x] Database schema (Prisma)
+- [x] Business Dashboard (frontend, mock data)
+- [ ] Auth (sitter login)
+- [ ] Client & Pet CRUD
+- [ ] Booking CRUD with calendar
+- [ ] Client portal (read-only first)
+- [ ] Photo uploads during bookings
+- [ ] Invoice generation
+- [ ] Stripe checkout (AUD)
 
-1. Push the repo to GitHub.
-2. In Vercel, *Add New → Project* and import the repo. Framework is detected automatically (`vercel.json` pins it to Next.js + pnpm).
-3. (Optional) Set `ADMIN_PASSWORD` in Project Settings → Environment Variables, then redeploy.
-4. Click *Deploy*.
-
-### Self-host
-
-`pnpm build && pnpm start` produces a standard Next.js production server on port 3000. Drop it behind any reverse proxy.
-
-### Continuous integration
-
-`.github/workflows/ci.yml` runs typecheck + tests + build on every push to `main` and on every PR.
-
-## Persistence
-
-**Verification reports** persist to a database when `DATABASE_URL` is set. The repo ships with a Prisma schema (SQLite for local dev, Postgres-compatible for prod). One vote per `(offerId, anonId)` is enforced by a unique index.
-
-Local setup (one-time, SQLite):
-
-```bash
-cp .env.example .env.local
-# set DATABASE_URL="file:./dev.db" inside .env.local
-pnpm db:migrate      # creates prisma/dev.db with the schema
-pnpm db:seed         # loads data/reports.seed.json (15 sample reports)
-pnpm dev
-```
-
-Production (Postgres):
-
-1. Provision Postgres (Vercel Postgres, Neon, Supabase, Railway, …).
-2. Switch the datasource provider in `prisma/schema.prisma` from `sqlite` to `postgresql`.
-3. Set `DATABASE_URL` in your host's environment.
-4. The `postinstall` script runs `prisma generate` automatically. Run `prisma migrate deploy` as part of your release step.
-
-When `DATABASE_URL` is unset the app falls back to an in-memory store seeded from `data/reports.seed.json` — fine for unit tests and local prototyping, but votes evaporate on restart.
-
-## Still in-memory (TODO: persist)
-
-Two pieces still live in process memory and reset on restart / cold start:
-
-- Admin offer-status overrides (`/admin`)
-- Outbound click counts (`/api/click/[offerId]`)
-
-Both are admin/analytics signals rather than user-facing trust signals, so they're lower priority than reports. Each is marked `TODO(future):` in code.
-
-Saved offers (`/dashboard`) live in per-browser `localStorage` and are unaffected by server restarts.
+All future integrations are marked with `TODO(future):` in code.

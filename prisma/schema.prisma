@@ -1,29 +1,184 @@
-// Coupon Scout AU — persistence layer.
-// SQLite for local dev (no infra). For production, switch the
-// datasource provider to "postgresql" and set DATABASE_URL.
+// PetSitter Pro — database schema (foundation).
+//
+// This models the Phase 1 MVP entities described in the project brief. It is
+// intentionally ahead of the frontend: the dashboard currently reads from
+// src/data/mock.ts, whose shapes mirror these models so the swap to a real API
+// is mechanical.
+//
+// Money is stored as integer cents (AUD). Timestamps are UTC; display layer
+// renders in AEST/AEDT.
+//
+// TODO(future): wire an Express + Prisma API, then replace the mock data layer.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  // Default: SQLite file at prisma/dev.db
+  // SQLite for local dev; switch to "postgresql" for staging/production.
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-// Verification reports — the user-facing trust signal. Persisted so
-// votes survive serverless cold starts and process restarts.
-model VerificationReport {
+enum ServiceType {
+  OVERNIGHT
+  DROP_IN
+  DAY_CARE
+  DOG_WALKING
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+}
+
+// The pet sitter operating the business. v1 is single-sitter (see Non-Goals:
+// no multi-staff), but the relation is kept explicit for a clean future upgrade.
+model Sitter {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  businessName String?
+  abn          String? // 11-digit Australian Business Number
+  phone        String?
+  createdAt    DateTime  @default(now())
+  clients      Client[]
+  bookings     Booking[]
+  invoices     Invoice[]
+}
+
+model Client {
+  id               String    @id @default(cuid())
+  sitterId         String
+  sitter           Sitter    @relation(fields: [sitterId], references: [id])
+  name             String
+  email            String
+  phone            String?
+  suburb           String?
+  emergencyContact String?
+  vetInfo          String?
+  createdAt        DateTime  @default(now())
+  pets             Pet[]
+  bookings         Booking[]
+  invoices         Invoice[]
+
+  @@index([sitterId])
+}
+
+model Pet {
+  id              String        @id @default(cuid())
+  clientId        String
+  client          Client        @relation(fields: [clientId], references: [id])
+  name            String
+  species         String
+  breed           String?
+  ageYears        Int?
+  weightKg        Float?
+  medicalNotes    String?
+  medications     String?
+  allergies       String?
+  behaviouralNotes String?
+  feedingSchedule String?
+  accessNotes     String?
+  photoUrl        String?
+  bookingPets     BookingPet[]
+  vaccinations    Vaccination[]
+
+  @@index([clientId])
+}
+
+model Vaccination {
   id        String   @id @default(cuid())
-  offerId   String
-  vote      String   // 'WORKED' | 'DIDNT_WORK'
-  comment   String?
-  anonId    String
+  petId     String
+  pet       Pet      @relation(fields: [petId], references: [id])
+  name      String
+  expiresAt DateTime
+
+  @@index([petId])
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  sitterId    String
+  sitter      Sitter        @relation(fields: [sitterId], references: [id])
+  clientId    String
+  client      Client        @relation(fields: [clientId], references: [id])
+  service     ServiceType
+  status      BookingStatus @default(REQUESTED)
+  startAt     DateTime
+  endAt       DateTime
+  totalCents  Int
+  notes       String?
+  createdAt   DateTime      @default(now())
+  pets        BookingPet[]
+  journal     JournalEntry[]
+  photos      Photo[]
+  invoice     Invoice?
+
+  @@index([sitterId])
+  @@index([clientId])
+  @@index([startAt])
+}
+
+// Join table: a booking can cover several pets.
+model BookingPet {
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id])
+  petId     String
+  pet       Pet     @relation(fields: [petId], references: [id])
+
+  @@id([bookingId, petId])
+}
+
+// During-stay updates shared with the client portal.
+model JournalEntry {
+  id        String   @id @default(cuid())
+  bookingId String
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  body      String
   createdAt DateTime @default(now())
 
-  @@index([offerId])
-  @@index([anonId])
-  // One vote per (offer, anonId) — DB-enforced.
-  @@unique([offerId, anonId])
+  @@index([bookingId])
+}
+
+model Photo {
+  id        String   @id @default(cuid())
+  bookingId String
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  url       String
+  caption   String?
+  createdAt DateTime @default(now())
+
+  @@index([bookingId])
+}
+
+model Invoice {
+  id              String        @id @default(cuid())
+  number          String        @unique
+  sitterId        String
+  sitter          Sitter        @relation(fields: [sitterId], references: [id])
+  clientId        String
+  client          Client        @relation(fields: [clientId], references: [id])
+  bookingId       String?       @unique
+  booking         Booking?      @relation(fields: [bookingId], references: [id])
+  status          InvoiceStatus @default(DRAFT)
+  totalCents      Int // GST-inclusive
+  gstCents        Int
+  dueDate         DateTime
+  // TODO(future): Stripe PaymentIntent id once checkout is wired.
+  stripePaymentId String?
+  createdAt       DateTime      @default(now())
+
+  @@index([sitterId])
+  @@index([clientId])
 }
