@@ -48,9 +48,9 @@ Open http://localhost:5173.
 
 ## Project layout
 
-- `src/pages/` — top-level pages (Dashboard, Clients, ClientDetail)
-- `src/components/` — layout, dashboard, client, and shared UI components
-- `src/lib/` — pure logic: `metrics`, `format` (AUD/GST/dates), `validation` (ABN, AU phone), `store` (CRUD), `useHashRoute`, theming
+- `src/pages/` — top-level pages (Dashboard, Clients, ClientDetail, Bookings)
+- `src/components/` — layout, dashboard, client, booking, and shared UI components
+- `src/lib/` — pure logic: `metrics`, `format` (AUD/GST/dates), `validation` (ABN, AU phone), `bookings` (calendar/conflicts), `store` (CRUD), `useHashRoute`, theming
 - `src/data/` — mock data (database-ready shapes)
 - `src/types.ts` — domain types mirroring the Prisma schema
 - `prisma/schema.prisma` — database schema foundation
@@ -77,9 +77,9 @@ Phase 1 (MVP) per the brief — build order: **database schema → API → front
 - [x] Database schema (Prisma)
 - [x] Business Dashboard (frontend, mock data)
 - [x] Client & Pet CRUD (frontend, localStorage-backed)
+- [x] Booking CRUD with month calendar, status workflow & conflict detection
 - [ ] Auth (sitter login)
 - [ ] Express + Prisma API (swap the localStorage store for real persistence)
-- [ ] Booking CRUD with calendar
 - [ ] Client portal (read-only first)
 - [ ] Photo uploads during bookings
 - [ ] Invoice generation

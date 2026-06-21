@@ -8,18 +8,23 @@
 // + Prisma API. The reducer signatures already match the intended REST shape.
 
 import { useCallback, useEffect, useState } from 'react';
-import type { Client, Pet } from '@/types';
-import { clients as seedClients, pets as seedPets } from '@/data/mock';
+import type { Booking, BookingStatus, Client, Pet } from '@/types';
+import {
+  bookings as seedBookings,
+  clients as seedClients,
+  pets as seedPets,
+} from '@/data/mock';
 
 export interface StoreState {
   clients: Client[];
   pets: Pet[];
+  bookings: Booking[];
 }
 
 const STORAGE_KEY = 'petsitter-data-v1';
 
 export function seedState(): StoreState {
-  return { clients: [...seedClients], pets: [...seedPets] };
+  return { clients: [...seedClients], pets: [...seedPets], bookings: [...seedBookings] };
 }
 
 // ---- Pure reducers (no React, no IO) -------------------------------------
@@ -39,8 +44,9 @@ export function updateClient(state: StoreState, id: string, patch: Partial<Omit<
 export function deleteClient(state: StoreState, id: string): StoreState {
   return {
     clients: state.clients.filter((c) => c.id !== id),
-    // Cascade: a client's pets go with them.
+    // Cascade: a client's pets and bookings go with them.
     pets: state.pets.filter((p) => p.clientId !== id),
+    bookings: state.bookings.filter((b) => b.clientId !== id),
   };
 }
 
@@ -64,6 +70,30 @@ export function petsForClient(state: StoreState, clientId: string): Pet[] {
   return state.pets.filter((p) => p.clientId === clientId);
 }
 
+export function addBooking(state: StoreState, booking: Omit<Booking, 'id'>): StoreState {
+  const newBooking: Booking = { ...booking, id: newId('b') };
+  return { ...state, bookings: [...state.bookings, newBooking] };
+}
+
+export function updateBooking(
+  state: StoreState,
+  id: string,
+  patch: Partial<Omit<Booking, 'id'>>,
+): StoreState {
+  return {
+    ...state,
+    bookings: state.bookings.map((b) => (b.id === id ? { ...b, ...patch } : b)),
+  };
+}
+
+export function setBookingStatus(state: StoreState, id: string, status: BookingStatus): StoreState {
+  return updateBooking(state, id, { status });
+}
+
+export function deleteBooking(state: StoreState, id: string): StoreState {
+  return { ...state, bookings: state.bookings.filter((b) => b.id !== id) };
+}
+
 function newId(prefix: string): string {
   const rand =
     typeof crypto !== 'undefined' && 'randomUUID' in crypto
@@ -81,6 +111,8 @@ function load(): StoreState {
     if (!raw) return seedState();
     const parsed = JSON.parse(raw) as StoreState;
     if (!Array.isArray(parsed.clients) || !Array.isArray(parsed.pets)) return seedState();
+    // Backfill bookings for stores saved before the bookings feature shipped.
+    if (!Array.isArray(parsed.bookings)) parsed.bookings = [...seedBookings];
     return parsed;
   } catch {
     return seedState();
@@ -103,6 +135,9 @@ export function useStore() {
     addPet: useCallback((p: Omit<Pet, 'id'>) => setState((s) => addPet(s, p)), []),
     updatePet: useCallback((id: string, patch: Partial<Omit<Pet, 'id' | 'clientId'>>) => setState((s) => updatePet(s, id, patch)), []),
     deletePet: useCallback((id: string) => setState((s) => deletePet(s, id)), []),
+    addBooking: useCallback((b: Omit<Booking, 'id'>) => setState((s) => addBooking(s, b)), []),
+    setBookingStatus: useCallback((id: string, status: BookingStatus) => setState((s) => setBookingStatus(s, id, status)), []),
+    deleteBooking: useCallback((id: string) => setState((s) => deleteBooking(s, id)), []),
     reset: useCallback(() => setState(seedState()), []),
   };
 }

@@ -3,6 +3,7 @@ import { Topbar } from '@/components/layout/Topbar';
 import { Dashboard } from '@/pages/Dashboard';
 import { Clients } from '@/pages/Clients';
 import { ClientDetail } from '@/pages/ClientDetail';
+import { Bookings } from '@/pages/Bookings';
 import { useTheme } from '@/lib/useTheme';
 import { useStore } from '@/lib/store';
 import { useHashRoute, segments } from '@/lib/useHashRoute';
@@ -46,6 +47,16 @@ export default function App() {
       />
     );
     heading = 'Clients';
+  } else if (parts[0] === 'bookings') {
+    content = (
+      <Bookings
+        state={store.state}
+        onAddBooking={store.addBooking}
+        onSetStatus={store.setBookingStatus}
+        onDeleteBooking={store.deleteBooking}
+      />
+    );
+    heading = 'Bookings';
   } else {
     content = <Dashboard />;
   }
