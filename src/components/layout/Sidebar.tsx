@@ -20,7 +20,7 @@ const NAV: NavItem[] = [
 ];
 
 // Routes with a real screen in v1; others are not yet navigable.
-const LIVE_ROUTES = new Set(['dashboard', 'clients']);
+const LIVE_ROUTES = new Set(['dashboard', 'clients', 'bookings']);
 
 export function Sidebar({
   current,
