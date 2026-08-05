@@ -3,17 +3,19 @@ import { Icon } from '@/components/ui/Icon';
 export function Topbar({
   theme,
   onToggleTheme,
+  heading,
   dateLabel,
 }: {
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
+  heading: string;
   dateLabel: string;
 }) {
   return (
     <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-black/5 bg-sand/80 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-brand-900/80 sm:px-6">
       <div className="min-w-0 flex-1">
         <h1 className="truncate text-lg font-semibold text-ink dark:text-white sm:text-xl">
-          Good morning, Sahara
+          {heading}
         </h1>
         <p className="truncate text-xs text-ink/60 dark:text-white/60">{dateLabel}</p>
       </div>

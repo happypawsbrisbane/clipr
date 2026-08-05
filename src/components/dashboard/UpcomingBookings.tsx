@@ -3,23 +3,8 @@ import { Icon } from '@/components/ui/Icon';
 import { SERVICE_LABELS } from '@/lib/metrics';
 import { formatAUD, formatWeekdayTime } from '@/lib/format';
 import { clientById, petById } from '@/data/mock';
-import type { Booking, BookingStatus } from '@/types';
-
-const STATUS_STYLES: Record<BookingStatus, string> = {
-  requested: 'bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
-  confirmed: 'bg-brand-50 text-brand-700 dark:bg-brand-400/15 dark:text-brand-200',
-  in_progress: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300',
-  completed: 'bg-black/5 text-ink/60 dark:bg-white/10 dark:text-white/60',
-  cancelled: 'bg-rose-50 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300',
-};
-
-const STATUS_LABELS: Record<BookingStatus, string> = {
-  requested: 'Requested',
-  confirmed: 'Confirmed',
-  in_progress: 'In progress',
-  completed: 'Completed',
-  cancelled: 'Cancelled',
-};
+import { STATUS_LABELS, STATUS_STYLES } from '@/components/bookings/status';
+import type { Booking } from '@/types';
 
 function petNames(booking: Booking): string {
   return booking.petIds.map((id) => petById(id)?.name ?? 'Pet').join(' & ');
