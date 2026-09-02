@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
-import { COLOURS, type ColourKey, type Product } from "@/lib/catalogue";
+import { COLOURS, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { useDialog } from "@/lib/useDialog";
@@ -44,13 +44,13 @@ function QuickViewBody({ product, initialColour }: { product: Product; initialCo
     }, 700);
   };
 
-  const still = product.images.still;
+  const still = stillFor(product, colour);
 
   return (
     <div className="grid md:grid-cols-2">
       <Frame
-        tone={still.src ? still.tone : colour}
-        src={still.src}
+        tone={still ? product.images.tone : colour}
+        src={still}
         alt={`${product.name} in ${COLOURS[colour].name}`}
         caption={`${product.name} · ${COLOURS[colour].name}`}
         className="aspect-[4/5] max-h-[38vh] md:max-h-none md:aspect-auto md:min-h-[560px]"

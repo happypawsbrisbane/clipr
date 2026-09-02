@@ -68,6 +68,27 @@ still reads as intended rather than collapsing.
 The hero is art-directed per breakpoint: `hero-mobile.jpg` (vertical) below the
 `md` breakpoint, `hero-desktop.jpg` (wide, subject right) above it.
 
+### Colourways
+
+Only one colourway of each piece was photographed. The rest are that photograph
+repainted: pixels are selected by hue, so the garment changes colour while the
+hardware, piping, stitching, cast shadow and ground are left alone, and each
+pixel keeps its own shading so folds still read as fabric. `images.base` names
+the colourway that was actually shot.
+
+They are a stand-in for a real shoot, not a substitute for one. Two limits worth
+knowing:
+
+- A large lightness change (Chalk to Ink) is re-centred rather than scaled,
+  because scaling crushes every fold into one flat tone. It holds up, but it is
+  the weakest of them.
+- Going the other way, dark to light, does not work at all: the detail simply
+  is not in the shadows to recover. The Best Mate Cap therefore ships in Denim
+  and Ink only; a Chalk cap needs a photograph.
+
+The worn view exists only in the base colourway, so it is offered on hover only
+while that colourway is selected.
+
 ## Layout
 
 - `src/app/` – layout, page, global styles and theme tokens

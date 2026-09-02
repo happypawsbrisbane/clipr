@@ -76,7 +76,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#community" className="link">
-                  Community
+                  The campaign
                 </a>
               </li>
               <li>

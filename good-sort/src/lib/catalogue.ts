@@ -37,13 +37,20 @@ export type Product = {
   blurb: string;
   details: string[];
   /**
-   * Image slots. `worn` is the second view, shown on hover; omit it for a piece
-   * that has not been shot in use yet. `tone` is the ground colour behind the
-   * photograph, and the fallback panel if `src` is ever dropped.
+   * Photography for the piece.
+   *
+   * `base` names the colourway that went in front of the camera; the rest of
+   * `stills` are that photograph repainted per colourway, so selecting a swatch
+   * changes the picture. `tone` is the ground colour of the shoot, painted
+   * behind the image and used as the fallback panel if a `src` is ever dropped.
+   * `worn` is the second view and exists only in the base colourway, so it is
+   * shown only while the base colourway is selected.
    */
   images: {
-    still: { tone: ColourKey; src?: string };
-    worn?: { tone: ColourKey; src?: string };
+    base: ColourKey;
+    tone: ColourKey;
+    stills: Partial<Record<ColourKey, string>>;
+    worn?: { tone: ColourKey; src: string };
   };
 };
 
@@ -66,7 +73,13 @@ export const PRODUCTS: Product[] = [
       "Machine washable, cold",
     ],
     images: {
-      still: { tone: "chalk", src: "/images/harness.jpg" },
+      base: "oxblood",
+      tone: "chalk",
+      stills: {
+        oxblood: "/images/harness.jpg",
+        denim: "/images/harness-denim.jpg",
+        citron: "/images/harness-citron.jpg",
+      },
       worn: { tone: "denim", src: "/images/harness-worn.jpg" },
     },
   },
@@ -75,7 +88,7 @@ export const PRODUCTS: Product[] = [
     name: "Kindred Rope Lead",
     priceCents: 6900,
     kinds: ["walk", "accessories"],
-    colours: ["oxblood", "denim", "powder", "citron"],
+    colours: ["citron", "oxblood", "denim", "powder"],
     sizes: ["120 cm", "180 cm"],
     blurb:
       "Twelve millimetre climbing rope with a leather-bound handle that softens the more you use it. Weighty enough to feel like something, light enough for a long one.",
@@ -86,7 +99,14 @@ export const PRODUCTS: Product[] = [
       "Made to be handed down",
     ],
     images: {
-      still: { tone: "chalk", src: "/images/lead.jpg" },
+      base: "citron",
+      tone: "chalk",
+      stills: {
+        citron: "/images/lead.jpg",
+        oxblood: "/images/lead-oxblood.jpg",
+        denim: "/images/lead-denim.jpg",
+        powder: "/images/lead-powder.jpg",
+      },
       worn: { tone: "chalk", src: "/images/lead-worn.jpg" },
     },
   },
@@ -107,7 +127,13 @@ export const PRODUCTS: Product[] = [
       "Garment washed, pre-shrunk",
     ],
     images: {
-      still: { tone: "powder", src: "/images/tee.jpg" },
+      base: "chalk",
+      tone: "powder",
+      stills: {
+        chalk: "/images/tee.jpg",
+        ink: "/images/tee-ink.jpg",
+        oxblood: "/images/tee-oxblood.jpg",
+      },
       worn: { tone: "denim", src: "/images/tee-worn.jpg" },
     },
   },
@@ -116,7 +142,7 @@ export const PRODUCTS: Product[] = [
     name: "Best Mate Cap",
     priceCents: 5900,
     kinds: ["humans", "apparel", "accessories"],
-    colours: ["ink", "denim", "chalk"],
+    colours: ["denim", "ink"],
     sizes: ["One size"],
     blurb:
       "An unstructured six-panel cap in brushed cotton twill with a low profile and a brass slider. Sun-faded on purpose after one good summer.",
@@ -127,7 +153,9 @@ export const PRODUCTS: Product[] = [
       "One size, fits most",
     ],
     images: {
-      still: { tone: "powder", src: "/images/cap.jpg" },
+      base: "denim",
+      tone: "powder",
+      stills: { denim: "/images/cap.jpg", ink: "/images/cap-ink.jpg" },
       worn: { tone: "chalk", src: "/images/cap-worn.jpg" },
     },
   },
@@ -136,7 +164,7 @@ export const PRODUCTS: Product[] = [
     name: "All Weather Dog Jacket",
     priceCents: 10900,
     kinds: ["dogs", "apparel"],
-    colours: ["oxblood", "denim"],
+    colours: ["powder", "oxblood", "denim"],
     sizes: ["XS", "S", "M", "L", "XL"],
     sizeNote: "Sized by back length. See the sizing guide.",
     badge: "sold-out",
@@ -150,7 +178,13 @@ export const PRODUCTS: Product[] = [
       "Reflective piping at the hem",
     ],
     images: {
-      still: { tone: "chalk", src: "/images/dog-jacket.jpg" },
+      base: "powder",
+      tone: "chalk",
+      stills: {
+        powder: "/images/dog-jacket.jpg",
+        oxblood: "/images/dog-jacket-oxblood.jpg",
+        denim: "/images/dog-jacket-denim.jpg",
+      },
       worn: { tone: "chalk", src: "/images/dog-jacket-worn.jpg" },
     },
   },
@@ -159,7 +193,7 @@ export const PRODUCTS: Product[] = [
     name: "Walkabout Crossbody Bag",
     priceCents: 8900,
     kinds: ["humans", "walk", "accessories"],
-    colours: ["ink", "oxblood", "powder"],
+    colours: ["chalk", "ink", "oxblood", "powder"],
     sizes: ["One size"],
     blurb:
       "Keys, phone, treats, bags, a ball. A crossbody with a dedicated pocket for each so you stop patting yourself down at the park gate.",
@@ -170,7 +204,14 @@ export const PRODUCTS: Product[] = [
       "Adjustable webbing strap, 2 L",
     ],
     images: {
-      still: { tone: "powder", src: "/images/bag.jpg" },
+      base: "chalk",
+      tone: "powder",
+      stills: {
+        chalk: "/images/bag.jpg",
+        ink: "/images/bag-ink.jpg",
+        oxblood: "/images/bag-oxblood.jpg",
+        powder: "/images/bag-powder.jpg",
+      },
       worn: { tone: "chalk", src: "/images/bag-worn.jpg" },
     },
   },
@@ -192,7 +233,9 @@ export const PRODUCTS: Product[] = [
       "Softens and fades with wear",
     ],
     images: {
-      still: { tone: "powder", src: "/images/overshirt.jpg" },
+      base: "oxblood",
+      tone: "powder",
+      stills: { oxblood: "/images/overshirt.jpg", ink: "/images/overshirt-ink.jpg" },
       worn: { tone: "chalk", src: "/images/overshirt-worn.jpg" },
     },
   },
@@ -212,11 +255,22 @@ export const PRODUCTS: Product[] = [
       "Pairs with the Oversized Tee",
     ],
     images: {
-      still: { tone: "chalk", src: "/images/bandana.jpg" },
+      base: "oxblood",
+      tone: "chalk",
+      stills: {
+        oxblood: "/images/bandana.jpg",
+        powder: "/images/bandana-powder.jpg",
+        citron: "/images/bandana-citron.jpg",
+      },
       worn: { tone: "chalk", src: "/images/bandana-alt.jpg" },
     },
   },
 ];
+
+/** The still for a colourway, falling back to the photographed one. */
+export function stillFor(product: Product, colour: ColourKey): string | undefined {
+  return product.images.stills[colour] ?? product.images.stills[product.images.base];
+}
 
 export const PRODUCT_BY_ID: Record<string, Product> = Object.fromEntries(
   PRODUCTS.map((p) => [p.id, p]),
