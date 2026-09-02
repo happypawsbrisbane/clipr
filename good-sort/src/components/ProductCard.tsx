@@ -49,16 +49,18 @@ export function ProductCard({ product, className = "" }: { product: Product; cla
             className="transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             mark="lg"
           />
-          <Frame
-            tone={worn.tone}
-            src={worn.src}
-            sizes="(min-width: 768px) 320px, 72vw"
-            alt={`${product.name} worn`}
-            caption={`${product.name} · Worn`}
-            fill
-            className="opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-within:opacity-100"
-            mark="sm"
-          />
+          {worn ? (
+            <Frame
+              tone={worn.tone}
+              src={worn.src}
+              sizes="(min-width: 768px) 320px, 72vw"
+              alt={`${product.name}, second view`}
+              caption={`${product.name} · Worn`}
+              fill
+              className="opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-within:opacity-100"
+              mark="sm"
+            />
+          ) : null}
         </button>
         {badgeLabel ? (
           <span

@@ -3,14 +3,18 @@ import { COLOURS, DARK_TONES, type ColourKey } from "@/lib/catalogue";
 import { Mark } from "./Wordmark";
 
 type Props = {
+  /** Ground colour behind the photograph, and the panel colour if `src` is absent. */
   tone: ColourKey;
-  /** Describes the photograph this slot is for. Used as alt text once a `src` exists. */
+  /** Describes the photograph this slot holds. */
   alt: string;
-  /** Small caption shown on the temporary treatment. */
+  /** Small caption, shown only on the placeholder treatment. */
   caption?: string;
   src?: string;
   sizes?: string;
   priority?: boolean;
+  quality?: number;
+  /** Focal point for the crop, e.g. "72% 50%". Defaults to the centre. */
+  position?: string;
   className?: string;
   children?: React.ReactNode;
   /** Scale of the faint mark in the temporary treatment. */
@@ -31,6 +35,8 @@ export function Frame({
   src,
   sizes = "100vw",
   priority,
+  quality = 82,
+  position,
   className = "",
   children,
   mark = "md",
@@ -44,7 +50,16 @@ export function Frame({
       style={{ backgroundColor: COLOURS[tone].hex }}
     >
       {src ? (
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          quality={quality}
+          className="object-cover"
+          style={position ? { objectPosition: position } : undefined}
+        />
       ) : (
         <div aria-hidden="true" className="absolute inset-0">
           <div className="grain absolute inset-0 opacity-30 mix-blend-multiply" />

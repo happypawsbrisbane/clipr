@@ -37,12 +37,13 @@ export type Product = {
   blurb: string;
   details: string[];
   /**
-   * Image slots. `worn` is shown on hover. Each slot is a brand tone for the
-   * temporary treatment; add a `src` when photography lands.
+   * Image slots. `worn` is the second view, shown on hover; omit it for a piece
+   * that has not been shot in use yet. `tone` is the ground colour behind the
+   * photograph, and the fallback panel if `src` is ever dropped.
    */
   images: {
     still: { tone: ColourKey; src?: string };
-    worn: { tone: ColourKey; src?: string };
+    worn?: { tone: ColourKey; src?: string };
   };
 };
 
@@ -64,7 +65,10 @@ export const PRODUCTS: Product[] = [
       "Four points of adjustment",
       "Machine washable, cold",
     ],
-    images: { still: { tone: "denim" }, worn: { tone: "oxblood" } },
+    images: {
+      still: { tone: "chalk", src: "/images/harness.jpg" },
+      worn: { tone: "denim", src: "/images/harness-worn.jpg" },
+    },
   },
   {
     id: "kindred-rope-lead",
@@ -81,7 +85,10 @@ export const PRODUCTS: Product[] = [
       "Colour-matched to the Everyday Harness",
       "Made to be handed down",
     ],
-    images: { still: { tone: "chalk" }, worn: { tone: "denim" } },
+    images: {
+      still: { tone: "chalk", src: "/images/lead.jpg" },
+      worn: { tone: "chalk", src: "/images/lead-worn.jpg" },
+    },
   },
   {
     id: "oversized-tee",
@@ -99,7 +106,10 @@ export const PRODUCTS: Product[] = [
       "Embroidered chest mark",
       "Garment washed, pre-shrunk",
     ],
-    images: { still: { tone: "powder" }, worn: { tone: "chalk" } },
+    images: {
+      still: { tone: "powder", src: "/images/tee.jpg" },
+      worn: { tone: "denim", src: "/images/tee-worn.jpg" },
+    },
   },
   {
     id: "best-mate-cap",
@@ -116,7 +126,10 @@ export const PRODUCTS: Product[] = [
       "Tonal embroidered wordmark",
       "One size, fits most",
     ],
-    images: { still: { tone: "citron" }, worn: { tone: "ink" } },
+    images: {
+      still: { tone: "powder", src: "/images/cap.jpg" },
+      worn: { tone: "chalk", src: "/images/cap-worn.jpg" },
+    },
   },
   {
     id: "all-weather-dog-jacket",
@@ -136,7 +149,10 @@ export const PRODUCTS: Product[] = [
       "Adjustable chest and belly straps",
       "Reflective piping at the hem",
     ],
-    images: { still: { tone: "oxblood" }, worn: { tone: "denim" } },
+    images: {
+      still: { tone: "chalk", src: "/images/dog-jacket.jpg" },
+      worn: { tone: "chalk", src: "/images/dog-jacket-worn.jpg" },
+    },
   },
   {
     id: "walkabout-crossbody",
@@ -153,7 +169,32 @@ export const PRODUCTS: Product[] = [
       "Wipe-clean treat pocket",
       "Adjustable webbing strap, 2 L",
     ],
-    images: { still: { tone: "ink" }, worn: { tone: "powder" } },
+    images: {
+      still: { tone: "powder", src: "/images/bag.jpg" },
+      worn: { tone: "chalk", src: "/images/bag-worn.jpg" },
+    },
+  },
+  {
+    id: "knockabout-overshirt",
+    name: "Knockabout Overshirt",
+    priceCents: 18900,
+    kinds: ["humans", "apparel"],
+    colours: ["oxblood", "ink"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    sizeNote: "Relaxed through the body. Take your usual size.",
+    badge: "new",
+    blurb:
+      "Garment-dyed cotton twill that softens with every wash, cut to throw on over the tee when the wind turns. Two chest pockets, two hip pockets, and room for a lead in each.",
+    details: [
+      "Garment-dyed organic cotton twill",
+      "Four pockets, antique brass shanks",
+      "Drops slightly at the back hem",
+      "Softens and fades with wear",
+    ],
+    images: {
+      still: { tone: "powder", src: "/images/overshirt.jpg" },
+      worn: { tone: "chalk", src: "/images/overshirt-worn.jpg" },
+    },
   },
   {
     id: "kindred-bandana",
@@ -170,7 +211,10 @@ export const PRODUCTS: Product[] = [
       "Tonal woven label",
       "Pairs with the Oversized Tee",
     ],
-    images: { still: { tone: "powder" }, worn: { tone: "citron" } },
+    images: {
+      still: { tone: "chalk", src: "/images/bandana.jpg" },
+      worn: { tone: "chalk", src: "/images/bandana-alt.jpg" },
+    },
   },
 ];
 
@@ -181,6 +225,7 @@ export const PRODUCT_BY_ID: Record<string, Product> = Object.fromEntries(
 export const FEATURED_IDS = [
   "everyday-harness",
   "kindred-rope-lead",
+  "knockabout-overshirt",
   "oversized-tee",
   "best-mate-cap",
   "all-weather-dog-jacket",

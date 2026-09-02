@@ -6,13 +6,13 @@ import { Frame } from "./Frame";
 import { ArrowUpRightIcon } from "./Icons";
 import { Reveal } from "./Reveal";
 
-const POSTS: { handle: string; place: string; tone: ColourKey; productId: string }[] = [
-  { handle: "@olive.and.jo", place: "New Farm, Brisbane", tone: "powder", productId: "everyday-harness" },
-  { handle: "@frankthebeagle", place: "Fitzroy, Melbourne", tone: "oxblood", productId: "kindred-rope-lead" },
-  { handle: "@saltygoldie", place: "Torquay, Victoria", tone: "citron", productId: "best-mate-cap" },
-  { handle: "@juno.mornings", place: "Fremantle, WA", tone: "denim", productId: "walkabout-crossbody" },
-  { handle: "@teddy.longboy", place: "Paddington, Brisbane", tone: "chalk", productId: "kindred-bandana" },
-  { handle: "@mabel.walks", place: "Newtown, Sydney", tone: "ink", productId: "oversized-tee" },
+const POSTS: { handle: string; place: string; tone: ColourKey; src: string; productId: string }[] = [
+  { handle: "@olive.and.jo", place: "New Farm, Brisbane", tone: "chalk", src: "/images/community-1.jpg", productId: "everyday-harness" },
+  { handle: "@juno.mornings", place: "Fremantle, WA", tone: "chalk", src: "/images/community-2.jpg", productId: "all-weather-dog-jacket" },
+  { handle: "@saltygoldie", place: "Torquay, Victoria", tone: "chalk", src: "/images/community-3.jpg", productId: "best-mate-cap" },
+  { handle: "@teddy.longboy", place: "Paddington, Brisbane", tone: "chalk", src: "/images/community-4.jpg", productId: "kindred-bandana" },
+  { handle: "@mabel.walks", place: "Newtown, Sydney", tone: "chalk", src: "/images/community-5.jpg", productId: "walkabout-crossbody" },
+  { handle: "@frankthebeagle", place: "Fitzroy, Melbourne", tone: "chalk", src: "/images/community-6.jpg", productId: "knockabout-overshirt" },
 ];
 
 export function Community() {
@@ -43,6 +43,8 @@ export function Community() {
                 >
                   <Frame
                     tone={post.tone}
+                    src={post.src}
+                    sizes="(min-width: 768px) 17vw, 62vw"
                     alt={`Photograph from ${post.handle} wearing ${product.name}`}
                     fill
             className="transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"

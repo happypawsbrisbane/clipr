@@ -33,10 +33,24 @@ export function Hero() {
     >
       <motion.div style={{ y }} className="absolute inset-0 -bottom-[18%] will-change-transform">
         <Frame
-          tone="oxblood"
-          alt="Campaign photograph: a person and their dog in coordinated Good Sort pieces, mid-walk"
-          caption="Campaign 01 · Coordinated in Oxblood · Photography to follow"
-          className="h-full w-full"
+          tone="ink"
+          src="/images/hero-mobile.jpg"
+          sizes="100vw"
+          quality={80}
+          position="52% 38%"
+          alt="A person walking their golden retriever, the dog in the All Weather Jacket and the Kindred Rope Lead in hand"
+          className="h-full w-full md:hidden"
+          mark="none"
+          priority
+        />
+        <Frame
+          tone="ink"
+          src="/images/hero-desktop.jpg"
+          sizes="100vw"
+          quality={82}
+          position="70% 50%"
+          alt="A person and their golden retriever in coordinated Good Sort pieces, the dog in the Everyday Harness"
+          className="hidden h-full w-full md:block"
           mark="none"
           priority
         />
@@ -44,7 +58,7 @@ export function Hero() {
 
       <motion.div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-ink/10"
+        className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/25 to-ink/35 md:from-ink/70 md:via-ink/15 md:to-ink/30"
         style={{ opacity: fade }}
       />
 

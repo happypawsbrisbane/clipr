@@ -11,32 +11,44 @@ const CARDS: {
   title: string;
   line: string;
   tone: "denim" | "powder" | "citron" | "oxblood" | "ink" | "chalk";
+  src: string;
+  alt: string;
   className: string;
   ratio: string;
+  sizes: string;
 }[] = [
   {
     kind: "dogs",
     title: "For Dogs",
     line: "Harnesses, jackets and the bandana they'll keep on.",
-    tone: "denim",
+    tone: "chalk",
+    src: "/images/kind-dogs.jpg",
+    alt: "The Everyday Harness, Kindred Rope Lead and Kindred Bandana laid out together",
     className: "md:col-span-7",
     ratio: "aspect-[4/5]",
+    sizes: "(min-width: 768px) 58vw, 100vw",
   },
   {
     kind: "humans",
     title: "For Humans",
-    line: "Tees and caps that go with the dog.",
+    line: "Tees, overshirts and caps that go with the dog.",
     tone: "powder",
+    src: "/images/kind-humans.jpg",
+    alt: "The Oversized Tee, Walkabout Crossbody and Best Mate Cap laid out together",
     className: "md:col-span-5 md:mt-24",
     ratio: "aspect-[3/4]",
+    sizes: "(min-width: 768px) 40vw, 100vw",
   },
   {
     kind: "walk",
     title: "Walk Gear",
     line: "Leads, bags and everything for the door.",
-    tone: "citron",
+    tone: "chalk",
+    src: "/images/kind-walk.jpg",
+    alt: "A person out walking their dog, crossbody on the hip and rope lead in hand",
     className: "md:col-span-8 md:col-start-5 md:-mt-10",
     ratio: "aspect-[16/10]",
+    sizes: "(min-width: 768px) 66vw, 100vw",
   },
 ];
 
@@ -63,8 +75,9 @@ export function ShopByKind() {
               <div className={`relative overflow-hidden ${card.ratio}`}>
                 <Frame
                   tone={card.tone}
-                  alt={`Editorial photograph for ${card.title}`}
-                  caption={`${card.title} · Photography to follow`}
+                  src={card.src}
+                  sizes={card.sizes}
+                  alt={card.alt}
                   fill
             className="transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                   mark="lg"
