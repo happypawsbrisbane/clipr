@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { COLOURS, DARK_TONES, type ColourKey } from "@/lib/catalogue";
-import { Mark } from "./Wordmark";
+import { Symbol } from "./Wordmark";
 
 type Props = {
   /** Ground colour behind the photograph, and the panel colour if `src` is absent. */
@@ -65,7 +65,7 @@ export function Frame({
           <div className="grain absolute inset-0 opacity-30 mix-blend-multiply" />
           <div className={`absolute inset-3 border ${dark ? "border-chalk/15" : "border-ink/10"}`} />
           <div className="absolute inset-0 flex items-center justify-center">
-            <Mark className={`${markClass} ${dark ? "text-chalk/[0.13]" : "text-ink/[0.09]"}`} />
+            <Symbol className={`${markClass} ${dark ? "text-chalk/[0.13]" : "text-ink/[0.09]"}`} />
           </div>
           {caption ? (
             <span

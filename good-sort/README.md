@@ -24,6 +24,25 @@ Open http://localhost:3000.
 | `pnpm build`     | Production build (also type-checks) |
 | `pnpm typecheck` | TypeScript only                   |
 
+## Brand assets
+
+`brand/` holds the supplied GOOD SORT package: outlined logo SVGs in all six
+colourways, editable sources, the interface icon set, colour tokens, monogram
+patterns, the copy deck, the brand guidelines and the original brand board.
+It is the reference, not the build — the site inlines what it needs:
+
+- `src/components/Wordmark.tsx` carries the wordmark, the GS symbol and the
+  monogram field, redrawn from the outlined paths so they paint in
+  `currentColor` and work on any ground.
+- `src/components/Icons.tsx` follows `brand/icons/`.
+- `src/app/globals.css` holds the palette; `brand/colours/good-sort-tokens.css`
+  is the source of those values.
+- `src/app/favicon.ico` is the supplied favicon.
+
+Display and body faces are Archivo Black and Inter, the substitutes the brand
+guide nominates for Neue Montreal Bold and Suisse Int'l. If the licensed files
+are ever added, the font stacks already list them first.
+
 ## Imagery
 
 Photography lives in `public/images/` and is wired up in two places:

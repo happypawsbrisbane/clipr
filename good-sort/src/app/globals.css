@@ -8,11 +8,14 @@
   --color-citron: #d7e04b;
   --color-ink: #191817;
 
-  --font-display: var(--font-display), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: var(--font-body), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Licensed brand faces first, then the substitutes the brand guide names. */
+  --font-display: "Neue Montreal", var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Suisse Int'l", var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-menu: cubic-bezier(0.76, 0, 0.24, 1);
+  /* Interface feedback, per the brand guide's 180-320ms range. */
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
@@ -56,9 +59,9 @@ input[type="search"]::-webkit-search-decoration {
 /* Oversized, tightly set display type */
 .display {
   font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
 /* Restrained uppercase labels */

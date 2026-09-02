@@ -59,7 +59,7 @@ export function Campaign() {
             </p>
             <div className="mt-8">
               <MagneticButton href="#the-walk" variant="chalk">
-                Shop matching sets
+                See the full set
               </MagneticButton>
             </div>
           </div>

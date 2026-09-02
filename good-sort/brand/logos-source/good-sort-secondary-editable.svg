@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 570" role="img" aria-labelledby="title desc">
+  <title id="title">GOOD SORT secondary stacked logo</title>
+  <desc id="desc">Stacked GOOD SORT wordmark with interlocking double O and tagline.</desc>
+  <defs>
+    <mask id="stacked-interlock">
+      <rect width="100%" height="100%" fill="white"/>
+      <rect x="258" y="82" width="16" height="62" rx="8" transform="rotate(42 266 113)" fill="black"/>
+      <rect x="258" y="172" width="16" height="62" rx="8" transform="rotate(42 266 203)" fill="black"/>
+    </mask>
+  </defs>
+  <g fill="#6E2033">
+    <text x="27" y="247" font-family="DejaVu Sans, Arial, sans-serif" font-size="196" font-weight="900" letter-spacing="-13">G</text>
+    <g fill-rule="evenodd" mask="url(#stacked-interlock)">
+      <path d="M225 78a74 74 0 1 1 0 148 74 74 0 0 1 0-148Zm0 41a33 33 0 1 0 0 66 33 33 0 0 0 0-66Z"/>
+      <path d="M305 78a74 74 0 1 1 0 148 74 74 0 0 1 0-148Zm0 41a33 33 0 1 0 0 66 33 33 0 0 0 0-66Z"/>
+    </g>
+    <text x="376" y="247" font-family="DejaVu Sans, Arial, sans-serif" font-size="196" font-weight="900" letter-spacing="-13">D</text>
+    <text x="18" y="435" font-family="DejaVu Sans, Arial, sans-serif" font-size="190" font-weight="900" letter-spacing="-13">SORT</text>
+    <text x="92" y="518" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="10">MADE FOR YOUR KIND.</text>
+  </g>
+</svg>

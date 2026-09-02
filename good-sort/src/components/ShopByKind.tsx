@@ -23,7 +23,7 @@ const CARDS: {
     line: "Harnesses, jackets and the bandana they'll keep on.",
     tone: "chalk",
     src: "/images/kind-dogs.jpg",
-    alt: "The Everyday Harness, Kindred Rope Lead and Kindred Bandana laid out together",
+    alt: "The Everyday Harness, Kindred Rope Lead and Good Sort Bandana laid out together",
     className: "md:col-span-7",
     ratio: "aspect-[4/5]",
     sizes: "(min-width: 768px) 58vw, 100vw",

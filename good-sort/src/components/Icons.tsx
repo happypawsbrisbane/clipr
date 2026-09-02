@@ -1,5 +1,11 @@
 import type { SVGProps } from "react";
 
+/*
+ * Interface icons from the brand package (`brand/icons/`), drawn on a 24px grid
+ * at 1.8 stroke in `currentColor`. ArrowUpRight and Check are not in the pack;
+ * they follow the same construction.
+ */
+
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
 function base({ size = 20, ...rest }: IconProps) {
@@ -9,7 +15,7 @@ function base({ size = 20, ...rest }: IconProps) {
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.5,
+    strokeWidth: 1.8,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
     "aria-hidden": true,
@@ -20,40 +26,40 @@ function base({ size = 20, ...rest }: IconProps) {
 
 export const SearchIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <circle cx="10.5" cy="10.5" r="6.5" />
-    <path d="M15.5 15.5 20 20" />
+    <circle cx="10.8" cy="10.8" r="6.8" />
+    <path d="m16 16 4.2 4.2" />
   </svg>
 );
 
 export const AccountIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <circle cx="12" cy="8" r="4" />
-    <path d="M4.5 20c.8-3.6 3.9-5.5 7.5-5.5s6.7 1.9 7.5 5.5" />
+    <path d="M4.5 21c.8-4 3.3-6 7.5-6s6.7 2 7.5 6" />
   </svg>
 );
 
 export const BagIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M5 8h14l-1 12H6L5 8Z" />
-    <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+    <path d="M5 8.5h14l-1 12H6l-1-12Z" />
+    <path d="M9 9V6.7a3 3 0 0 1 6 0V9" />
   </svg>
 );
 
 export const MenuIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M3 8h18M3 16h18" />
+    <path d="M3 7h18M3 17h18" />
   </svg>
 );
 
 export const CloseIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M6 6l12 12M18 6 6 18" />
+    <path d="m5 5 14 14M19 5 5 19" />
   </svg>
 );
 
 export const ArrowRightIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M4 12h16M13 5l7 7-7 7" />
+    <path d="M4 12h15M14 6l6 6-6 6" />
   </svg>
 );
 
@@ -65,13 +71,13 @@ export const ArrowUpRightIcon = (p: IconProps) => (
 
 export const PlusIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M12 5v14M5 12h14" />
+    <path d="M12 4v16M4 12h16" />
   </svg>
 );
 
 export const MinusIcon = (p: IconProps) => (
   <svg {...base(p)}>
-    <path d="M5 12h14" />
+    <path d="M4 12h16" />
   </svg>
 );
 
