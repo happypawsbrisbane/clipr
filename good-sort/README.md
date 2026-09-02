@@ -24,6 +24,13 @@ Open http://localhost:3000.
 | `pnpm build`     | Production build (also type-checks) |
 | `pnpm typecheck` | TypeScript only                   |
 
+## Deployment
+
+`vercel.json` here declares the Next.js build for this directory. The
+repository root carries its own `vercel.json` for PetSitter Pro, a Vite app
+that builds to `dist`; without this file the deployment looks for that output
+directory and fails after `next build` succeeds.
+
 ## Brand assets
 
 `brand/` holds the supplied GOOD SORT package: outlined logo SVGs in all six
