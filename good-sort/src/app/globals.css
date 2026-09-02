@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-oxblood: #6e2033;
+  --color-chalk: #f5f0e7;
+  --color-denim: #2e4b6b;
+  --color-powder: #b9cfd4;
+  --color-citron: #d7e04b;
+  --color-ink: #191817;
+
+  --font-display: var(--font-display), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-body), "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-menu: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@layer base {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-chalk);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: var(--color-chalk);
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+}
+
+@layer components {
+/* Oversized, tightly set display type */
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+/* Restrained uppercase labels */
+.label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Underline link: draws in from the left on hover, out to the right on leave */
+.link {
+  position: relative;
+  display: inline-block;
+}
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-expo);
+}
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+}
+
+/* Temporary art-directed image treatment: fine grain over flat brand colour */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee {
+    animation: none;
+  }
+  .link::after {
+    transition: none;
+  }
+}
