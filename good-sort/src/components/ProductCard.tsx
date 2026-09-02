@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
-import { COLOURS, type ColourKey, type Product } from "@/lib/catalogue";
+import { COLOURS, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { Frame } from "./Frame";
@@ -27,7 +27,11 @@ export function ProductCard({ product, className = "" }: { product: Product; cla
     }
   };
 
-  const { still, worn } = product.images;
+  const { base, tone, worn } = product.images;
+  const still = stillFor(product, colour);
+  // The worn shot exists only in the photographed colourway, so it is offered
+  // only while that colourway is selected.
+  const showWorn = worn && colour === base;
   const badgeLabel = product.badge === "new" ? "New" : product.badge === "sold-out" ? "Sold out" : null;
 
   return (
@@ -40,8 +44,8 @@ export function ProductCard({ product, className = "" }: { product: Product; cla
           aria-label={`Quick view ${product.name}`}
         >
           <Frame
-            tone={still.src ? still.tone : colour}
-            src={still.src}
+            tone={still ? tone : colour}
+            src={still}
             sizes="(min-width: 768px) 320px, 72vw"
             alt={`${product.name} in ${COLOURS[colour].name}`}
             caption={`${product.name} · ${COLOURS[colour].name}`}
@@ -49,7 +53,7 @@ export function ProductCard({ product, className = "" }: { product: Product; cla
             className="transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             mark="lg"
           />
-          {worn ? (
+          {showWorn ? (
             <Frame
               tone={worn.tone}
               src={worn.src}

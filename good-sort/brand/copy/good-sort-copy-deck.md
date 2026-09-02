@@ -35,6 +35,10 @@ GOOD SORT makes considered everyday gear for dogs and their people. Comfortable 
 | All Weather Dog Jacket | $109 AUD | A lightweight weather layer with an adjustable neck, harness access and easy-clean shell. |
 | Walkabout Crossbody Bag | $89 AUD | A compact hands-free bag with room for phone, keys, treats and waste bags. |
 | Good Sort Bandana | $35 AUD | A soft cotton neckerchief finished with contrast border stripes. |
+| Knockabout Overshirt | $189 AUD | A garment-dyed cotton twill overshirt with four pockets, cut to layer over the tee. |
+
+Added 2 September 2026: the Knockabout Overshirt, the oxblood piece worn in the
+campaign photography, confirmed as the eighth product.
 
 ## Voice
 
