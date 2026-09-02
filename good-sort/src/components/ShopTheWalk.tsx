@@ -13,14 +13,6 @@ import { Swatches } from "./Swatches";
 
 type Choice = { colour: ColourKey; size: string; included: boolean };
 
-/** Where each piece sits on the composition, as a percentage of the frame. */
-const HOTSPOTS: Record<string, { x: number; y: number }> = {
-  "everyday-harness": { x: 58, y: 62 },
-  "kindred-rope-lead": { x: 44, y: 40 },
-  "kindred-bandana": { x: 66, y: 50 },
-  "walkabout-crossbody": { x: 28, y: 46 },
-};
-
 export function ShopTheWalk() {
   const { add } = useCart();
   const { notify, openCart, openInfo } = useUI();
@@ -64,16 +56,8 @@ export function ShopTheWalk() {
 
       <div className="grid gap-10 md:grid-cols-12 md:gap-8">
         <Reveal className="md:col-span-7">
-          <div className="relative aspect-[4/5] md:aspect-[5/6]">
-            <Frame
-              tone={choices[active].colour === "chalk" || choices[active].colour === "powder" ? "denim" : "powder"}
-              alt="Composition photograph: the Everyday Harness, Kindred Rope Lead, Kindred Bandana and Walkabout Crossbody laid out together"
-              caption="Composition 01 · The Walk · Photography to follow"
-              fill
-              mark="lg"
-            />
+          <div className="grid grid-cols-2 gap-2 md:gap-3">
             {items.map((p, i) => {
-              const spot = HOTSPOTS[p.id];
               const isActive = p.id === active;
               const on = choices[p.id].included;
               return (
@@ -81,25 +65,44 @@ export function ShopTheWalk() {
                   key={p.id}
                   type="button"
                   onClick={() => setActive(p.id)}
-                  aria-label={`${p.name}${on ? "" : ", not included"}`}
                   aria-pressed={isActive}
-                  className={`absolute flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[12px] font-semibold tabular-nums transition-all duration-500 ${
-                    isActive ? "scale-110 bg-ink text-chalk" : "bg-chalk text-ink hover:scale-110"
-                  } ${on ? "" : "opacity-40"}`}
-                  style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+                  aria-label={`${p.name}, ${COLOURS[choices[p.id].colour].name}${on ? "" : ", not in the set"}`}
+                  className="group relative block aspect-[4/5] overflow-hidden text-left"
                 >
-                  {i + 1}
+                  <Frame
+                    tone={p.images.still.tone}
+                    src={p.images.still.src}
+                    sizes="(min-width: 768px) 28vw, 45vw"
+                    alt={`${p.name} in ${COLOURS[choices[p.id].colour].name}`}
+                    fill
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] ${
+                      on ? "" : "opacity-35 saturate-0"
+                    }`}
+                    mark="lg"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-0 border-2 transition-colors duration-500 ${
+                      isActive ? "border-ink" : "border-transparent"
+                    }`}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className={`absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full text-[12px] font-semibold tabular-nums transition-colors duration-500 ${
+                      isActive ? "bg-ink text-chalk" : "bg-chalk/90 text-ink"
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                  {!on ? <span className="label absolute bottom-3 left-3 text-ink/70">Not in the set</span> : null}
                 </button>
               );
             })}
-            <div className="absolute inset-x-5 bottom-5 hidden md:block">
-              <p className="label text-ink/60">Selected</p>
-              <p className="display mt-1 text-2xl">
-                {activeProduct.name}{" "}
-                <span className="text-ink/50">· {COLOURS[choices[active].colour].name}</span>
-              </p>
-            </div>
           </div>
+          <p className="label mt-4 hidden text-ink/60 md:block">
+            Selected <span className="text-ink">{activeProduct.name}</span> ·{" "}
+            {COLOURS[choices[active].colour].name}
+          </p>
         </Reveal>
 
         <Reveal className="md:col-span-5" delay={0.1}>

@@ -19,9 +19,10 @@ export function Campaign() {
         <div className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:min-h-[90vh]">
           <motion.div style={{ y: yLeft }} className="absolute -inset-y-12 inset-x-0 will-change-transform">
             <Frame
-              tone="denim"
-              alt="Campaign photograph: a person in the Oversized Tee and Walkabout Crossbody"
-              caption="Campaign 02 · Human · Denim"
+              tone="chalk"
+              src="/images/campaign-human.jpg"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              alt="A person in the Knockabout Overshirt over the Good Sort Oversized Tee"
               className="h-full w-full"
               mark="lg"
             />
@@ -30,15 +31,22 @@ export function Campaign() {
         <div className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:min-h-[90vh]">
           <motion.div style={{ y: yRight }} className="absolute -inset-y-12 inset-x-0 will-change-transform">
             <Frame
-              tone="oxblood"
-              alt="Campaign photograph: their dog in the Everyday Harness and Kindred Bandana"
-              caption="Campaign 02 · Dog · Oxblood"
+              tone="powder"
+              src="/images/campaign-dog.jpg"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              alt="Their dog on the lead in the All Weather Dog Jacket"
               className="h-full w-full"
               mark="lg"
             />
           </motion.div>
         </div>
       </div>
+
+      {/* The headline sits over photography, so it needs its own ground. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/35 to-ink/15 md:bg-[radial-gradient(ellipse_60%_55%_at_50%_50%,rgba(25,24,23,0.72),rgba(25,24,23,0.28)_70%,rgba(25,24,23,0.15))]"
+      />
 
       <div className="pointer-events-none absolute inset-0 flex items-end md:items-center">
         <Reveal className="pointer-events-auto w-full px-5 pb-10 md:px-8 md:pb-0">
