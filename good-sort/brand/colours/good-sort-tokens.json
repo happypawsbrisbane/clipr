@@ -1,0 +1,20 @@
+{
+  "brand": "GOOD SORT",
+  "colour": {
+    "oxblood": "#6E2033",
+    "chalk": "#F5F0E7",
+    "denim": "#2E4B6B",
+    "powder": "#B9CFD4",
+    "citron": "#D7E04B",
+    "ink": "#191817"
+  },
+  "typography": {
+    "display": ["Neue Montreal Bold", "Archivo Black", "Helvetica Neue", "Arial", "sans-serif"],
+    "body": ["Suisse Int'l", "Inter", "Helvetica Neue", "Arial", "sans-serif"],
+    "labelTracking": "0.14em"
+  },
+  "motion": {
+    "standardDuration": "240ms",
+    "standardEasing": "cubic-bezier(0.22, 1, 0.36, 1)"
+  }
+}

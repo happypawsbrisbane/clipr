@@ -114,7 +114,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "best-mate-cap",
     name: "Best Mate Cap",
-    priceCents: 4900,
+    priceCents: 5900,
     kinds: ["humans", "apparel", "accessories"],
     colours: ["ink", "denim", "chalk"],
     sizes: ["One size"],
@@ -134,7 +134,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "all-weather-dog-jacket",
     name: "All Weather Dog Jacket",
-    priceCents: 11900,
+    priceCents: 10900,
     kinds: ["dogs", "apparel"],
     colours: ["oxblood", "denim"],
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -157,7 +157,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "walkabout-crossbody",
     name: "Walkabout Crossbody Bag",
-    priceCents: 12900,
+    priceCents: 8900,
     kinds: ["humans", "walk", "accessories"],
     colours: ["ink", "oxblood", "powder"],
     sizes: ["One size"],
@@ -197,8 +197,8 @@ export const PRODUCTS: Product[] = [
     },
   },
   {
-    id: "kindred-bandana",
-    name: "Kindred Bandana",
+    id: "good-sort-bandana",
+    name: "Good Sort Bandana",
     priceCents: 3500,
     kinds: ["dogs", "accessories"],
     colours: ["oxblood", "powder", "citron"],
@@ -235,7 +235,7 @@ export const FEATURED_IDS = [
 export const WALK_SET_IDS = [
   "everyday-harness",
   "kindred-rope-lead",
-  "kindred-bandana",
+  "good-sort-bandana",
   "walkabout-crossbody",
 ];
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Archivo_Black, Inter } from "next/font/google";
 import "./globals.css";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
@@ -11,17 +11,18 @@ import { QuickView } from "@/components/QuickView";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { Toast } from "@/components/Toast";
 
-// Closest open faces to the brand's Neue Montreal Bold and Suisse Int'l.
-const display = Inter_Tight({
+// The brand guide names Neue Montreal Bold and Suisse Int'l, both commercial,
+// and nominates Archivo Black and Inter as the web substitutes.
+const display = Archivo_Black({
   subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-display",
+  weight: ["400"],
+  variable: "--font-display-face",
   display: "swap",
 });
 const body = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-body",
+  variable: "--font-body-face",
   display: "swap",
 });
 

@@ -1,4 +1,4 @@
-import { Mark } from "./Wordmark";
+import { Symbol } from "./Wordmark";
 
 const ITEMS = ["Made for your kind.", "Australian wearables for dogs & humans", "Est. 2024"];
 
@@ -9,7 +9,7 @@ export function ScrollingTagline() {
       {ITEMS.map((item) => (
         <li key={item} className="label flex items-center gap-10 pr-10">
           <span>{item}</span>
-          <Mark className="h-2.5 w-auto" />
+          <Symbol className="h-3 w-auto" />
         </li>
       ))}
     </ul>

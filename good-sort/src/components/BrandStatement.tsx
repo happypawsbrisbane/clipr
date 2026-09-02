@@ -41,11 +41,9 @@ export function BrandStatement() {
         </Reveal>
         <Reveal className="md:col-span-6" delay={0.1}>
           <p className="text-[19px] leading-snug md:text-[24px]">
-            Good Sort started with a dachshund, a rope lead that kept slipping and a tee that got
-            ruined by a muddy paw. So we made better ones. The collection brings together
-            comfortable materials, practical details and considered design, so what your dog wears
-            and what you wear were clearly made by the same people, with the same care, for the
-            same walk.
+            Good Sort makes considered everyday gear for dogs and their people. Comfortable
+            materials, practical details and a sharp eye for colour come together in pieces made
+            for walks, weekends and wherever you both end up next.
           </p>
           <p className="mt-6 text-[15px] leading-relaxed text-ink/70">
             Designed in Brisbane. Made in small runs. Sized for the dogs we actually know, from

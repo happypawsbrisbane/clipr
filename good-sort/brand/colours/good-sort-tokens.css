@@ -1,0 +1,17 @@
+:root {
+  --good-sort-oxblood: #6e2033;
+  --good-sort-chalk: #f5f0e7;
+  --good-sort-denim: #2e4b6b;
+  --good-sort-powder: #b9cfd4;
+  --good-sort-citron: #d7e04b;
+  --good-sort-ink: #191817;
+
+  --good-sort-display: "Neue Montreal", "Archivo Black", "Helvetica Neue", Arial, sans-serif;
+  --good-sort-body: "Suisse Int'l", Inter, "Helvetica Neue", Arial, sans-serif;
+
+  --good-sort-radius-sm: 0.25rem;
+  --good-sort-radius-md: 0.5rem;
+  --good-sort-page-gutter: clamp(1rem, 3vw, 3rem);
+  --good-sort-section-space: clamp(4.5rem, 10vw, 9rem);
+  --good-sort-transition: 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}

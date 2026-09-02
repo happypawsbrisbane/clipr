@@ -10,7 +10,7 @@ const POSTS: { handle: string; place: string; tone: ColourKey; src: string; prod
   { handle: "@olive.and.jo", place: "New Farm, Brisbane", tone: "chalk", src: "/images/community-1.jpg", productId: "everyday-harness" },
   { handle: "@juno.mornings", place: "Fremantle, WA", tone: "chalk", src: "/images/community-2.jpg", productId: "all-weather-dog-jacket" },
   { handle: "@saltygoldie", place: "Torquay, Victoria", tone: "chalk", src: "/images/community-3.jpg", productId: "best-mate-cap" },
-  { handle: "@teddy.longboy", place: "Paddington, Brisbane", tone: "chalk", src: "/images/community-4.jpg", productId: "kindred-bandana" },
+  { handle: "@teddy.longboy", place: "Paddington, Brisbane", tone: "chalk", src: "/images/community-4.jpg", productId: "good-sort-bandana" },
   { handle: "@mabel.walks", place: "Newtown, Sydney", tone: "chalk", src: "/images/community-5.jpg", productId: "walkabout-crossbody" },
   { handle: "@frankthebeagle", place: "Fitzroy, Melbourne", tone: "chalk", src: "/images/community-6.jpg", productId: "knockabout-overshirt" },
 ];

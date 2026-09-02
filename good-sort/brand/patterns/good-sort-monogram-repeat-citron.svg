@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+  <defs>
+    <pattern id="gs" width="160" height="160" patternUnits="userSpaceOnUse" patternTransform="rotate(-12)">
+      <g fill="#D7E04B" opacity="0.92" transform="translate(25 26)">
+        <text x="0" y="82" font-family="DejaVu Sans, Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="-16">G</text>
+        <text x="49" y="100" font-family="DejaVu Sans, Arial, sans-serif" font-size="78" font-weight="900" letter-spacing="-14">S</text>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="480" height="480" fill="url(#gs)"/>
+</svg>

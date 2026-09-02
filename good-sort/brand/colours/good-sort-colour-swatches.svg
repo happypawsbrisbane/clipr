@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 250" role="img" aria-labelledby="title desc">
+  <title id="title">GOOD SORT colour palette</title>
+  <desc id="desc">Six brand colour swatches on a transparent canvas.</desc>
+  <g font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#191817">
+    <g transform="translate(0)"><rect width="200" height="150" rx="10" fill="#6E2033"/><text y="188" font-weight="700">OXBLOOD</text><text y="224">#6E2033</text></g>
+    <g transform="translate(224)"><rect width="200" height="150" rx="10" fill="#F5F0E7" stroke="#CFC9BE"/><text y="188" font-weight="700">CHALK</text><text y="224">#F5F0E7</text></g>
+    <g transform="translate(448)"><rect width="200" height="150" rx="10" fill="#2E4B6B"/><text y="188" font-weight="700">DENIM</text><text y="224">#2E4B6B</text></g>
+    <g transform="translate(672)"><rect width="200" height="150" rx="10" fill="#B9CFD4"/><text y="188" font-weight="700">POWDER</text><text y="224">#B9CFD4</text></g>
+    <g transform="translate(896)"><rect width="200" height="150" rx="10" fill="#D7E04B"/><text y="188" font-weight="700">CITRON</text><text y="224">#D7E04B</text></g>
+    <g transform="translate(1120)"><rect width="200" height="150" rx="10" fill="#191817"/><text y="188" font-weight="700">INK</text><text y="224">#191817</text></g>
+  </g>
+</svg>
