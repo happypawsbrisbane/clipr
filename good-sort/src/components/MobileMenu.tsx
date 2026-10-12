@@ -48,7 +48,7 @@ export function MobileMenu() {
                   key={item.label}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
+                  exit={{ opacity: 0, y: 12, transition: { duration: 0.2, delay: 0 } }}
                   transition={{ duration: 0.6, delay: 0.25 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <a
@@ -70,7 +70,7 @@ export function MobileMenu() {
             className="flex items-end justify-between px-6 pb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
             transition={{ duration: 0.5, delay: 0.55 }}
           >
             <ul className="label space-y-3">

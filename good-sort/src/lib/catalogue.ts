@@ -276,6 +276,7 @@ export const PRODUCT_BY_ID: Record<string, Product> = Object.fromEntries(
   PRODUCTS.map((p) => [p.id, p]),
 );
 
+/** The order the collection leads with. It sets order, not membership. */
 export const FEATURED_IDS = [
   "everyday-harness",
   "kindred-rope-lead",
@@ -284,6 +285,17 @@ export const FEATURED_IDS = [
   "best-mate-cap",
   "all-weather-dog-jacket",
   "walkabout-crossbody",
+];
+
+/**
+ * Every piece, led by the featured order, with anything else appended. Built
+ * this way so a new product shows up under "Everything" without being added to
+ * two lists: leaving it out of FEATURED_IDS changes where it sits, not whether
+ * it can be found.
+ */
+export const COLLECTION: Product[] = [
+  ...FEATURED_IDS.map((id) => PRODUCT_BY_ID[id]),
+  ...PRODUCTS.filter((p) => !FEATURED_IDS.includes(p.id)),
 ];
 
 export const WALK_SET_IDS = [
