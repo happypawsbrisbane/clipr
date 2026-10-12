@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { FEATURED_IDS, KIND_LABELS, PRODUCTS, PRODUCT_BY_ID, filterProducts, type Kind } from "@/lib/catalogue";
+import { COLLECTION, KIND_LABELS, PRODUCTS, filterProducts, type Kind } from "@/lib/catalogue";
 import { useUI } from "@/lib/ui";
 import { ArrowRightIcon } from "./Icons";
 import { ProductCard } from "./ProductCard";
@@ -13,8 +13,7 @@ export function FeaturedProducts() {
   const { filter, setFilter } = useUI();
   const scroller = useRef<HTMLDivElement>(null);
 
-  const featured = FEATURED_IDS.map((id) => PRODUCT_BY_ID[id]);
-  const products = filter === "all" ? featured : filterProducts(PRODUCTS, filter);
+  const products = filter === "all" ? COLLECTION : filterProducts(PRODUCTS, filter);
 
   useEffect(() => {
     scroller.current?.scrollTo({ left: 0, behavior: "smooth" });

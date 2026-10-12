@@ -26,7 +26,7 @@ export function BrandStatement() {
             <motion.p
               className={`display text-[11.5vw] uppercase md:text-[9.5vw] ${i === 2 ? "text-oxblood" : ""}`}
               variants={{ hidden: { y: "110%" }, shown: { y: "0%" } }}
-              transition={{ duration: 1, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={reduce ? { duration: 0 } : { duration: 1, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               {line}
             </motion.p>

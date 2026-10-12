@@ -15,14 +15,14 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "18%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  const enter = (delay: number) =>
-    reduce
-      ? {}
-      : {
-          initial: { opacity: 0, y: 32 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 1.1, delay, ease: EASE },
-        };
+  // useReducedMotion resolves to its real value after mount, so these props have
+  // to keep the same shape in both cases: dropping `animate` on the second render
+  // left the hero copy stuck on the `initial` opacity of 0, invisible.
+  const enter = (delay: number) => ({
+    initial: { opacity: 0, y: 32 },
+    animate: { opacity: 1, y: 0 },
+    transition: reduce ? { duration: 0 } : { duration: 1.1, delay, ease: EASE },
+  });
 
   return (
     <section
