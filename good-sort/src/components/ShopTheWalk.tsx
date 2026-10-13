@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useCart } from "@/lib/cart";
-import { COLOURS, PRODUCT_BY_ID, WALK_SET_IDS, stillFor, type ColourKey } from "@/lib/catalogue";
+import { COLOURS, PRODUCT_BY_ID, WALK_SET_IDS, stillAlt, stillFor, type ColourKey } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { Frame } from "./Frame";
@@ -73,7 +73,7 @@ export function ShopTheWalk() {
                     tone={p.images.tone}
                     src={stillFor(p, choices[p.id].colour)}
                     sizes="(min-width: 768px) 28vw, 45vw"
-                    alt={`${p.name} in ${COLOURS[choices[p.id].colour].name}`}
+                    alt={stillAlt(p, choices[p.id].colour)}
                     fill
                     className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] ${
                       on ? "" : "opacity-35 saturate-0"

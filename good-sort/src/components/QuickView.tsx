@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
-import { COLOURS, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
+import { COLOURS, stillAlt, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { useDialog } from "@/lib/useDialog";
@@ -51,7 +51,7 @@ function QuickViewBody({ product, initialColour }: { product: Product; initialCo
       <Frame
         tone={still ? product.images.tone : colour}
         src={still}
-        alt={`${product.name} in ${COLOURS[colour].name}`}
+        alt={stillAlt(product, colour)}
         caption={`${product.name} · ${COLOURS[colour].name}`}
         className="aspect-[4/5] max-h-[38vh] md:max-h-none md:aspect-auto md:min-h-[560px]"
         mark="lg"

@@ -206,12 +206,11 @@ export const PRODUCTS: Product[] = [
     images: {
       base: "chalk",
       tone: "powder",
-      stills: {
-        chalk: "/images/bag.jpg",
-        ink: "/images/bag-ink.jpg",
-        oxblood: "/images/bag-oxblood.jpg",
-        powder: "/images/bag-powder.jpg",
-      },
+      // TODO(future): the ink, oxblood and powder bags are waiting on a camera.
+      // Their generated stills were repaints of the previous, unbranded sample
+      // and tinted the hardware with the canvas, so they have been removed and
+      // those swatches fall back to the photographed chalk.
+      stills: { chalk: "/images/bag.jpg" },
       worn: { tone: "chalk", src: "/images/bag-worn.jpg" },
     },
   },
@@ -270,6 +269,19 @@ export const PRODUCTS: Product[] = [
 /** The still for a colourway, falling back to the photographed one. */
 export function stillFor(product: Product, colour: ColourKey): string | undefined {
   return product.images.stills[colour] ?? product.images.stills[product.images.base];
+}
+
+/** The colourway a still actually shows, which is the base one when it fell back. */
+export function depictedColour(product: Product, colour: ColourKey): ColourKey {
+  return product.images.stills[colour] ? colour : product.images.base;
+}
+
+/** Alt text for a still, which must describe the photograph and not the swatch. */
+export function stillAlt(product: Product, colour: ColourKey): string {
+  const shown = depictedColour(product, colour);
+  return shown === colour
+    ? `${product.name} in ${COLOURS[colour].name}`
+    : `${product.name}, photographed in ${COLOURS[shown].name}`;
 }
 
 export const PRODUCT_BY_ID: Record<string, Product> = Object.fromEntries(

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
-import { COLOURS, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
+import { COLOURS, stillAlt, stillFor, type ColourKey, type Product } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { Frame } from "./Frame";
@@ -47,7 +47,7 @@ export function ProductCard({ product, className = "" }: { product: Product; cla
             tone={still ? tone : colour}
             src={still}
             sizes="(min-width: 768px) 320px, 72vw"
-            alt={`${product.name} in ${COLOURS[colour].name}`}
+            alt={stillAlt(product, colour)}
             caption={`${product.name} · ${COLOURS[colour].name}`}
             fill
             className="transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
