@@ -119,7 +119,7 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     sizeNote: "Boxy, dropped shoulder. Size down for a closer fit.",
     blurb:
-      "Heavyweight organic cotton with the interlocking OO at the chest and nothing else to say. Cut to sit long and loose over whatever you walked out the door in.",
+      "Heavyweight organic cotton with the GS monogram at the chest and nothing else to say. Cut to sit long and loose over whatever you walked out the door in.",
     details: [
       "240 gsm organic cotton jersey",
       "Dropped shoulder, ribbed collar",
@@ -129,11 +129,9 @@ export const PRODUCTS: Product[] = [
     images: {
       base: "chalk",
       tone: "powder",
-      stills: {
-        chalk: "/images/tee.jpg",
-        ink: "/images/tee-ink.jpg",
-        oxblood: "/images/tee-oxblood.jpg",
-      },
+      // TODO(future): ink and oxblood are waiting on a camera. Repainting the
+      // chalk tee would swallow the oxblood monogram along with the body.
+      stills: { chalk: "/images/tee.jpg" },
       worn: { tone: "denim", src: "/images/tee-worn.jpg" },
     },
   },
@@ -149,13 +147,15 @@ export const PRODUCTS: Product[] = [
     details: [
       "Brushed cotton twill, unstructured crown",
       "Solid brass adjuster",
-      "Tonal embroidered wordmark",
+      "Embroidered GS monogram",
       "One size, fits most",
     ],
     images: {
       base: "denim",
       tone: "powder",
-      stills: { denim: "/images/cap.jpg", ink: "/images/cap-ink.jpg" },
+      // TODO(future): ink is waiting on a camera. The denim cap repainted dark
+      // loses the chalk monogram's contrast.
+      stills: { denim: "/images/cap.jpg" },
       worn: { tone: "chalk", src: "/images/cap-worn.jpg" },
     },
   },
