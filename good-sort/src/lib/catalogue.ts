@@ -91,10 +91,10 @@ export const PRODUCTS: Product[] = [
     colours: ["citron", "oxblood", "denim", "powder"],
     sizes: ["120 cm", "180 cm"],
     blurb:
-      "Twelve millimetre climbing rope with a leather-bound handle that softens the more you use it. Weighty enough to feel like something, light enough for a long one.",
+      "Twelve millimetre climbing rope spliced to a stainless snap hook, the splice bound in vegetable-tanned leather that softens the more you use it. Weighty enough to feel like something, light enough for a long one.",
     details: [
-      "12 mm braided rope, solid brass snap hook",
-      "Vegetable-tanned leather binding",
+      "12 mm braided rope, stainless snap hook",
+      "Vegetable-tanned leather at the splice",
       "Colour-matched to the Everyday Harness",
       "Made to be handed down",
     ],
@@ -170,19 +170,20 @@ export const PRODUCTS: Product[] = [
     badge: "sold-out",
     soldOut: true,
     blurb:
-      "Waxed cotton shell, quilted lining and a harness opening at the back. For the winter mornings that are still worth getting up for.",
+      "A smooth technical shell with a drawcord collar and a harness opening at the back. For the winter mornings that are still worth getting up for.",
     details: [
-      "Waxed organic cotton, quilted recycled fill",
+      "Recycled technical shell",
+      "Drawcord collar",
       "Harness access at the back",
       "Adjustable chest and belly straps",
-      "Reflective piping at the hem",
     ],
     images: {
       base: "powder",
       tone: "chalk",
+      // TODO(future): oxblood is waiting on a camera. Repainting the powder
+      // shell that far left pale patches across the body and the hem.
       stills: {
         powder: "/images/dog-jacket.jpg",
-        oxblood: "/images/dog-jacket-oxblood.jpg",
         denim: "/images/dog-jacket-denim.jpg",
       },
       worn: { tone: "chalk", src: "/images/dog-jacket-worn.jpg" },
