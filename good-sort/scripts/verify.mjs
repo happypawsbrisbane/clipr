@@ -96,6 +96,7 @@ for (const vp of [
   const cardCount = await cards.count();
   if (cardCount === 0) note(vp.name, "no product cards found");
   const limit = vp.name === "desktop" ? cardCount : 1;
+  let anyRepainted = false;
   for (let c = 0; c < limit; c++) {
     const card = cards.nth(c);
     const name = ((await card.locator("h3").first().textContent()) ?? `card ${c + 1}`).trim();
@@ -115,8 +116,11 @@ for (const vp of [
       const painted = await img.evaluate((el) => el.complete && el.naturalWidth > 0);
       if (!painted) note(vp.name, `${name}: swatch ${i + 1} shows an image with no pixels (${src})`);
     }
-    if (seen.size < 2) note(vp.name, `${name}: every swatch shows the same image`);
+    // A piece photographed in one colourway only shows that still on every
+    // swatch, which is intended. Repainting breaking everywhere is not.
+    if (seen.size > 1) anyRepainted = true;
   }
+  if (cardCount > 0 && !anyRepainted) note(vp.name, "no card repaints its image when a swatch is chosen");
 
   // Nothing a filter can show may be missing from "Everything".
   if (vp.name === "desktop") {

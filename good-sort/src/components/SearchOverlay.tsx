@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { COLOURS, PRODUCTS, stillFor, searchProducts } from "@/lib/catalogue";
+import { COLOURS, PRODUCTS, stillAlt, stillFor, searchProducts } from "@/lib/catalogue";
 import { formatAUD } from "@/lib/money";
 import { useUI } from "@/lib/ui";
 import { useDialog } from "@/lib/useDialog";
@@ -113,7 +113,7 @@ export function SearchOverlay() {
                         <Frame
                           tone={p.images.tone}
                           src={stillFor(p, p.images.base)}
-                          alt={`${p.name} in ${COLOURS[p.colours[0]].name}`}
+                          alt={stillAlt(p, p.images.base)}
                           className="aspect-[4/5] w-full"
                           mark="lg"
                         />
