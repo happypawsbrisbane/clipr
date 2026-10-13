@@ -120,8 +120,7 @@ for (const vp of [
 
   // Nothing a filter can show may be missing from "Everything".
   if (vp.name === "desktop") {
-    const names = async () =>
-      (await cards.allTextContents()).map((t) => t.trim().split("\n")[0]).filter(Boolean);
+    const names = () => page.locator("article h3").allTextContents();
     const chips = page.getByRole("group", { name: /filter the collection/i }).getByRole("button");
     const labels = await chips.allTextContents();
     await chips.first().click();

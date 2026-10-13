@@ -247,11 +247,11 @@ export const PRODUCTS: Product[] = [
     colours: ["oxblood", "powder", "citron"],
     sizes: ["S/M", "L/XL"],
     blurb:
-      "A slip-on bandana that threads through their collar so it stays put. Washed cotton, tonal wordmark, no ties to chew.",
+      "A classic triangle bandana in washed cotton with a chalk edge stripe. Knots at the neck or over their collar, and softens with every wash.",
     details: [
       "Washed organic cotton poplin",
-      "Collar loop, no ties",
-      "Tonal woven label",
+      "Chalk edge stripe",
+      "Knots at the neck or over a collar",
       "Pairs with the Oversized Tee",
     ],
     images: {
